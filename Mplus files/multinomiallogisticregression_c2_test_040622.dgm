@@ -1,0 +1,188 @@
+VERSION 1.1.0
+INPUT
+TITLE:
+
+  BRFSS Cognitive Decline Multinomial Logistic Regression
+
+DATA:
+  File is 'C:\Users\tuk04132\OneDrive - Temple University\Documents\
+  LCA BRFSS\brfss_cogdec_impute_step1_c2_save_04062022.txt' ;
+  Format is FREE;
+VARIABLE:
+      names = CDHOUSE CDASSIST CDHELP CDSOCIAL CDDISCUS SEX AGE55_64
+age65_bi RACEG21_ nohs hsgrad SomeColl INC15 INC1525 INC2550 EMP_empl
+EMP_unem GENHLTH_ DRNKANY5 SMOKE100 CPROB1 CPROB2 C FINALWT ststr_2
+stratapsu_2;
+      usevariables = ststr_2 stratapsu_2 finalwt C SEX AGE55_64
+      age65_bi RACEG21_ nohs hsgrad SomeColl INC15 INC1525 INC2550
+      EMP_empl EMP_unem GENHLTH_ DRNKANY5 SMOKE100;
+      categorical = C;
+      strat = ststr_2;
+      cluster = stratapsu_2;
+      weight = finalwt;
+      missing = *;
+ANALYSIS:
+      Estimator = MLR;
+      Type = complex;
+      integration = montecarlo;
+OUTPUT:
+      tech10;
+MODEL:
+      C ON SEX AGE55_64 age65_bi RACEG21_ nohs hsgrad
+      SomeColl INC15 INC1525 INC2550 EMP_empl EMP_unem GENHLTH_
+      DRNKANY5 SMOKE100;
+      SEX AGE55_64 age65_bi RACEG21_ nohs hsgrad
+      SomeColl INC15 INC1525 INC2550 EMP_empl EMP_unem GENHLTH_
+      DRNKANY5 SMOKE100;
+INPUT_END
+2
+0
+0
+0
+MLR
+1
+GENERAL
+0
+16
+0
+0
+c sex age55_64 age65_bi raceg21_ nohs hsgrad somecoll inc15 inc1525 inc2550 emp_empl emp_unem genhlth_ drnkany5 smoke100
+2
+1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0
+0
+1 1 sex c   -0.219    0.112
+1 1 age55_64 c   -0.264    0.155
+1 1 age65_bi c   -0.860    0.126
+1 1 raceg21_ c    0.391    0.059
+1 1 nohs c    0.415    0.086
+1 1 hsgrad c    0.170    0.076
+1 1 somecoll c    0.249    0.065
+1 1 inc15 c    0.816    0.191
+1 1 inc1525 c    0.540    0.209
+1 1 inc2550 c    0.196    0.229
+1 1 emp_empl c   -0.783    0.156
+1 1 emp_unem c   -0.202    0.100
+1 1 genhlth_ c   -0.985    0.087
+1 1 drnkany5 c   -0.504    0.068
+1 1 smoke100 c   -0.053    0.064
+2 1 age55_64 sex    0.005    0.005
+2 1 age65_bi sex    0.003    0.003
+2 1 age65_bi age55_64   -0.122    0.006
+2 1 raceg21_ sex   -0.006    0.004
+2 1 raceg21_ age55_64    0.008    0.003
+2 1 raceg21_ age65_bi   -0.028    0.003
+2 1 nohs sex    0.002    0.004
+2 1 nohs age55_64   -0.001    0.003
+2 1 nohs age65_bi   -0.003    0.004
+2 1 nohs raceg21_    0.047    0.006
+2 1 hsgrad sex   -0.002    0.003
+2 1 hsgrad age55_64    0.002    0.003
+2 1 hsgrad age65_bi   -0.002    0.004
+2 1 hsgrad raceg21_   -0.008    0.002
+2 1 hsgrad nohs   -0.066    0.004
+2 1 somecoll sex   -0.003    0.004
+2 1 somecoll age55_64    0.004    0.003
+2 1 somecoll age65_bi   -0.004    0.003
+2 1 somecoll raceg21_   -0.021    0.006
+2 1 somecoll nohs   -0.068    0.002
+2 1 somecoll hsgrad   -0.088    0.002
+2 1 inc15 sex   -0.011    0.004
+2 1 inc15 age55_64    0.007    0.003
+2 1 inc15 age65_bi   -0.023    0.002
+2 1 inc15 raceg21_    0.034    0.004
+2 1 inc15 nohs    0.046    0.004
+2 1 inc15 hsgrad    0.005    0.003
+2 1 inc15 somecoll   -0.025    0.004
+2 1 inc1525 sex   -0.007    0.002
+2 1 inc1525 age55_64    0.003    0.002
+2 1 inc1525 age65_bi    0.001    0.002
+2 1 inc1525 raceg21_    0.011    0.002
+2 1 inc1525 nohs    0.014    0.004
+2 1 inc1525 hsgrad    0.014    0.003
+2 1 inc1525 somecoll   -0.006    0.002
+2 1 inc1525 inc15   -0.050    0.003
+2 1 inc2550 sex    0.008    0.003
+2 1 inc2550 age55_64   -0.010    0.003
+2 1 inc2550 age65_bi    0.032    0.003
+2 1 inc2550 raceg21_   -0.008    0.004
+2 1 inc2550 nohs   -0.010    0.004
+2 1 inc2550 hsgrad    0.007    0.003
+2 1 inc2550 somecoll    0.010    0.002
+2 1 inc2550 inc15   -0.055    0.002
+2 1 inc2550 inc1525   -0.058    0.003
+2 1 emp_empl sex    0.015    0.003
+2 1 emp_empl age55_64    0.033    0.004
+2 1 emp_empl age65_bi   -0.105    0.004
+2 1 emp_empl raceg21_    0.004    0.003
+2 1 emp_empl nohs   -0.013    0.006
+2 1 emp_empl hsgrad   -0.008    0.003
+2 1 emp_empl somecoll    0.009    0.005
+2 1 emp_empl inc15   -0.028    0.003
+2 1 emp_empl inc1525   -0.017    0.003
+2 1 emp_empl inc2550   -0.006    0.002
+2 1 emp_unem sex   -0.031    0.005
+2 1 emp_unem age55_64    0.008    0.003
+2 1 emp_unem age65_bi   -0.041    0.004
+2 1 emp_unem raceg21_    0.020    0.005
+2 1 emp_unem nohs    0.024    0.004
+2 1 emp_unem hsgrad    0.006    0.003
+2 1 emp_unem somecoll   -0.013    0.003
+2 1 emp_unem inc15    0.053    0.005
+2 1 emp_unem inc1525    0.003    0.003
+2 1 emp_unem inc2550   -0.022    0.004
+2 1 emp_unem emp_empl   -0.060    0.005
+2 1 genhlth_ sex    0.000    0.003
+2 1 genhlth_ age55_64   -0.018    0.003
+2 1 genhlth_ age65_bi    0.019    0.003
+2 1 genhlth_ raceg21_   -0.030    0.004
+2 1 genhlth_ nohs   -0.039    0.004
+2 1 genhlth_ hsgrad   -0.011    0.002
+2 1 genhlth_ somecoll    0.013    0.005
+2 1 genhlth_ inc15   -0.052    0.003
+2 1 genhlth_ inc1525   -0.025    0.003
+2 1 genhlth_ inc2550    0.012    0.003
+2 1 genhlth_ emp_empl    0.028    0.004
+2 1 genhlth_ emp_unem   -0.026    0.003
+2 1 drnkany5 sex    0.034    0.003
+2 1 drnkany5 age55_64   -0.005    0.005
+2 1 drnkany5 age65_bi   -0.012    0.003
+2 1 drnkany5 raceg21_   -0.021    0.005
+2 1 drnkany5 nohs   -0.031    0.004
+2 1 drnkany5 hsgrad   -0.017    0.002
+2 1 drnkany5 somecoll    0.017    0.004
+2 1 drnkany5 inc15   -0.030    0.002
+2 1 drnkany5 inc1525   -0.024    0.002
+2 1 drnkany5 inc2550    0.004    0.002
+2 1 drnkany5 emp_empl    0.033    0.005
+2 1 drnkany5 emp_unem   -0.023    0.004
+2 1 drnkany5 genhlth_    0.050    0.006
+2 1 smoke100 sex    0.033    0.004
+2 1 smoke100 age55_64    0.014    0.002
+2 1 smoke100 age65_bi   -0.014    0.003
+2 1 smoke100 raceg21_   -0.018    0.002
+2 1 smoke100 nohs    0.005    0.004
+2 1 smoke100 hsgrad    0.014    0.003
+2 1 smoke100 somecoll    0.006    0.003
+2 1 smoke100 inc15    0.014    0.003
+2 1 smoke100 inc1525    0.005    0.003
+2 1 smoke100 inc2550   -0.001    0.003
+2 1 smoke100 emp_empl   -0.001    0.003
+2 1 smoke100 emp_unem    0.002    0.004
+2 1 smoke100 genhlth_   -0.019    0.002
+2 1 smoke100 drnkany5    0.017    0.003
+5 1 sex    0.249    0.001
+5 1 age55_64    0.215    0.004
+5 1 age65_bi    0.238    0.006
+5 1 raceg21_    0.213    0.004
+5 1 nohs    0.175    0.005
+5 1 hsgrad    0.207    0.005
+5 1 somecoll    0.210    0.004
+5 1 inc15    0.170    0.006
+5 1 inc1525    0.177    0.004
+5 1 inc2550    0.188    0.004
+5 1 emp_empl    0.218    0.005
+5 1 emp_unem    0.144    0.005
+5 1 genhlth_    0.250    0.000
+5 1 drnkany5    0.240    0.002
+5 1 smoke100    0.243    0.002

@@ -1,0 +1,2416 @@
+Mplus VERSION 8.1
+MUTHEN & MUTHEN
+04/06/2022   2:41 PM
+
+INPUT INSTRUCTIONS
+
+  Title:
+    BRFSS Cognitive Decline Latent Class Analysis 3-Step Method: Step 1
+   ! Using imputed subset data of only those who completed the module.
+
+  Data:
+    File is 'C:\Users\tuk04132\OneDrive - Temple University\Documents\
+    LCA BRFSS\BRFSS_CogDec_impute.csv' ;
+    Format is FREE;
+  Define:
+      stratapsu_2 = psu_2*ststr_2;
+  Variable:
+    names = STATE PSU GENHLTH SEX MARITAL EMPLOY1 SMOKE100 CIMEMLOS CDHOUSE
+  CDASSIST CDHELP CDSOCIAL CDDISCUS STSTR finalwt RACEG21 AGEG BMI5CAT
+  EDUCAG INCOMG DRNKANY5 year version stratapsu psu_2 ststr_2 AGEG_rec
+  age55_64_bin age65_bin RACEG21_rec nohs hsgrad SomeColl INCOMG_4cat
+  inc15 inc1525 inc2550 EMPLOY1_3cat EMP_empl EMP_unempl GENHLTH_bin;
+    usevariables = ststr_2 finalwt CDHOUSE CDASSIST CDHELP
+    CDSOCIAL CDDISCUS stratapsu_2;
+    categorical  = CDHOUSE CDASSIST CDHELP CDSOCIAL CDDISCUS;
+    auxiliary = (R3STEP) SEX age55_64_bin age65_bin RACEG21_rec nohs hsgrad
+  SomeColl inc15 inc1525 inc2550 EMP_empl EMP_unempl GENHLTH_bin DRNKANY5
+  SMOKE100;
+    strat = ststr_2;
+    cluster = stratapsu_2;
+    weight = finalwt;
+    missing = ALL(99);
+    classes = c(2);
+  Analysis:
+    Type = complex mixture;
+  Savedata:
+    file is brfss_cogdec_impute_step1_c2_save_04062022.txt ;
+    save is cprob;
+    format is free;
+  output:
+    tech10 tech11;
+
+
+
+*** WARNING
+  Data set contains cases with missing on all variables except
+  x-variables.  These cases were not included in the analysis.
+  Number of cases with missing on all variables except x-variables:  54
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+BRFSS Cognitive Decline Latent Class Analysis 3-Step Method: Step 1
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                       32128
+
+Number of dependent variables                                    5
+Number of independent variables                                  0
+Number of continuous latent variables                            0
+Number of categorical latent variables                           1
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   CDHOUSE     CDASSIST    CDHELP      CDSOCIAL    CDDISCUS
+
+Observed auxiliary variables
+   SEX         AGE55_64_B  AGE65_BIN   RACEG21_RE  NOHS        HSGRAD
+   SOMECOLL    INC15       INC1525     INC2550     EMP_EMPL    EMP_UNEMPL
+   GENHLTH_BI  DRNKANY5    SMOKE100
+
+Categorical latent variables
+   C
+
+Variables with special functions
+
+  Stratification        STSTR_2
+  Cluster variable      STRATAPS
+  Weight variable       FINALWT
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-06
+    Relative loglikelihood change                        0.100D-06
+    Derivative                                           0.100D-05
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Random Starts Specifications
+  Number of initial stage random starts                         20
+  Number of final stage optimizations                            4
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+Link                                                         LOGIT
+
+Input data file(s)
+  C:\Users\tuk04132\OneDrive - Temple University\Documents\LCA BRFSS\BRFSS_CogDe
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns            23
+     Number of y missing data patterns           0
+     Number of u missing data patterns          23
+     Number of strata                      52
+     Number of clusters                   135
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR U
+
+
+           Covariance Coverage
+              CDHOUSE       CDASSIST      CDHELP        CDSOCIAL      CDDISCUS
+              ________      ________      ________      ________      ________
+ CDHOUSE        0.984
+ CDASSIST       0.976         0.990
+ CDHELP         0.974         0.988         0.988
+ CDSOCIAL       0.969         0.976         0.974         0.983
+ CDDISCUS       0.975         0.982         0.980         0.976         0.990
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    CDHOUSE
+      Category 1    0.078         2473.552
+      Category 2    0.065         2060.182
+      Category 3    0.264         8333.426
+      Category 4    0.137         4345.250
+      Category 5    0.456        14405.618
+    CDASSIST
+      Category 1    0.069         2183.897
+      Category 2    0.047         1504.246
+      Category 3    0.239         7588.694
+      Category 4    0.155         4931.364
+      Category 5    0.490        15571.006
+    CDHELP
+      Category 1    0.139         4391.444
+      Category 2    0.067         2118.629
+      Category 3    0.094         2965.043
+      Category 4    0.030          958.221
+      Category 5    0.671        21261.638
+    CDSOCIAL
+      Category 1    0.101         3191.454
+      Category 2    0.063         1994.705
+      Category 3    0.201         6325.923
+      Category 4    0.166         5231.161
+      Category 5    0.469        14788.103
+    CDDISCUS
+      Category 1    0.454        14422.674
+      Category 2    0.546        17347.050
+
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+         -154592.637  127215           9
+         -154592.637  195873           6
+         -154592.637  253358           2
+         -154592.637  533738           11
+
+
+
+THE BEST LOGLIKELIHOOD VALUE HAS BEEN REPLICATED.  RERUN WITH AT LEAST TWICE THE
+RANDOM STARTS TO CHECK THAT THE BEST LOGLIKELIHOOD IS STILL OBTAINED AND REPLICATED.
+
+     IN THE OPTIMIZATION, ONE OR MORE LOGIT THRESHOLDS APPROACHED AND WERE SET
+     AT THE EXTREME VALUES.  EXTREME VALUES ARE -15.000 AND 15.000.
+     THE FOLLOWING THRESHOLDS WERE SET AT THESE VALUES:
+     * THRESHOLD 1 OF CLASS INDICATOR CDHELP FOR CLASS 1 AT ITERATION 26
+     * THRESHOLD 2 OF CLASS INDICATOR CDHELP FOR CLASS 1 AT ITERATION 26
+     * THRESHOLD 3 OF CLASS INDICATOR CDHELP FOR CLASS 1 AT ITERATION 26
+     * THRESHOLD 4 OF CLASS INDICATOR CDHELP FOR CLASS 1 AT ITERATION 26
+     * THRESHOLD 1 OF CLASS INDICATOR CDASSIST FOR CLASS 2 AT ITERATION 26
+     * THRESHOLD 2 OF CLASS INDICATOR CDASSIST FOR CLASS 2 AT ITERATION 26
+     * THRESHOLD 3 OF CLASS INDICATOR CDASSIST FOR CLASS 2 AT ITERATION 26
+     * THRESHOLD 4 OF CLASS INDICATOR CDASSIST FOR CLASS 2 AT ITERATION 26
+
+
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       35
+
+Loglikelihood
+
+          H0 Value                     -154592.637
+          H0 Scaling Correction Factor      7.5737
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                  309255.274
+          Bayesian (BIC)                309548.486
+          Sample-Size Adjusted BIC      309437.257
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit for the Binary and Ordered Categorical
+(Ordinal) Outcomes
+
+          Pearson Chi-Square
+
+          Value                           2631.942
+          Degrees of Freedom                  1214
+          P-Value                           0.0000
+
+          Likelihood Ratio Chi-Square
+
+          Value                           1345.196
+          Degrees of Freedom                  1214
+          P-Value                           0.0049
+
+Chi-Square Test for MCAR under the Unrestricted Latent Class Indicator Model
+
+          Pearson Chi-Square
+
+          Value                           1827.039
+          Degrees of Freedom                  2075
+          P-Value                           1.0000
+
+          Likelihood Ratio Chi-Square
+
+          Value                           1508.656
+          Degrees of Freedom                  2075
+          P-Value                           1.0000
+
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THE ESTIMATED MODEL
+
+    Latent
+   Classes
+
+       1      20789.70441          0.64709
+       2      11338.29559          0.35291
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+    Latent
+   Classes
+
+       1      20789.70385          0.64709
+       2      11338.29615          0.35291
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THEIR MOST LIKELY LATENT CLASS MEMBERSHIP
+
+Class Counts and Proportions
+
+    Latent
+   Classes
+
+       1            20794          0.64721
+       2            11334          0.35279
+
+
+CLASSIFICATION QUALITY
+
+     Entropy                         0.987
+
+
+Average Latent Class Probabilities for Most Likely Latent Class Membership (Row)
+by Latent Class (Column)
+
+           1        2
+
+    1   0.997    0.003
+    2   0.005    0.995
+
+
+Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+           1        2
+
+    1   0.997    0.003
+    2   0.006    0.994
+
+
+Logits for the Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+              1        2
+
+    1      5.869    0.000
+    2     -5.197    0.000
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ Thresholds
+    CDHOUSE$1         -3.687      0.143    -25.854      0.000
+    CDHOUSE$2         -3.003      0.092    -32.522      0.000
+    CDHOUSE$3         -1.355      0.066    -20.433      0.000
+    CDHOUSE$4         -0.526      0.071     -7.416      0.000
+    CDASSIST$1        -7.403      0.698    -10.607      0.000
+    CDASSIST$2        -6.911      0.622    -11.117      0.000
+    CDASSIST$3        -5.448      0.431    -12.637      0.000
+    CDASSIST$4        -1.132      0.042    -26.960      0.000
+    CDHELP$1         -15.000      0.000    999.000    999.000
+    CDHELP$2         -15.000      0.000    999.000    999.000
+    CDHELP$3         -15.000      0.000    999.000    999.000
+    CDHELP$4         -15.000      0.000    999.000    999.000
+    CDSOCIAL$1        -3.530      0.097    -36.256      0.000
+    CDSOCIAL$2        -2.940      0.057    -51.146      0.000
+    CDSOCIAL$3        -1.550      0.062    -25.186      0.000
+    CDSOCIAL$4        -0.569      0.041    -13.737      0.000
+    CDDISCUS$1        -0.549      0.032    -17.152      0.000
+
+Latent Class 2
+
+ Thresholds
+    CDHOUSE$1         -1.533      0.051    -30.298      0.000
+    CDHOUSE$2         -0.750      0.044    -17.161      0.000
+    CDHOUSE$3          1.265      0.093     13.599      0.000
+    CDHOUSE$4          1.847      0.104     17.832      0.000
+    CDASSIST$1        -1.424      0.034    -41.690      0.000
+    CDASSIST$2        -0.718      0.062    -11.548      0.000
+    CDASSIST$3        15.000      0.000    999.000    999.000
+    CDASSIST$4        15.000      0.000    999.000    999.000
+    CDHELP$1          -0.424      0.078     -5.431      0.000
+    CDHELP$2           0.348      0.087      3.998      0.000
+    CDHELP$3           1.760      0.075     23.329      0.000
+    CDHELP$4           2.743      0.108     25.372      0.000
+    CDSOCIAL$1        -1.171      0.072    -16.195      0.000
+    CDSOCIAL$2        -0.501      0.064     -7.849      0.000
+    CDSOCIAL$3         0.938      0.114      8.219      0.000
+    CDSOCIAL$4         1.709      0.086     19.909      0.000
+    CDDISCUS$1         0.475      0.061      7.755      0.000
+
+Categorical Latent Variables
+
+ Means
+    C#1                0.606      0.026     23.146      0.000
+
+
+RESULTS IN PROBABILITY SCALE
+
+Latent Class 1
+
+ CDHOUSE
+    Category 1         0.024      0.003      7.188      0.000
+    Category 2         0.023      0.002      9.150      0.000
+    Category 3         0.158      0.009     17.365      0.000
+    Category 4         0.166      0.009     18.013      0.000
+    Category 5         0.629      0.017     37.964      0.000
+ CDASSIST
+    Category 1         0.001      0.000      1.434      0.152
+    Category 2         0.000      0.000      0.908      0.364
+    Category 3         0.003      0.002      1.984      0.047
+    Category 4         0.239      0.007     35.823      0.000
+    Category 5         0.756      0.008     97.689      0.000
+ CDHELP
+    Category 1         0.000      0.000      0.000      1.000
+    Category 2         0.000      0.000      0.000      1.000
+    Category 3         0.000      0.000      0.000      1.000
+    Category 4         0.000      0.000      0.000      1.000
+    Category 5         1.000      0.000      0.000      1.000
+ CDSOCIAL
+    Category 1         0.028      0.003     10.570      0.000
+    Category 2         0.022      0.003      8.142      0.000
+    Category 3         0.125      0.008     15.977      0.000
+    Category 4         0.186      0.008     23.231      0.000
+    Category 5         0.639      0.010     66.776      0.000
+ CDDISCUS
+    Category 1         0.366      0.007     49.316      0.000
+    Category 2         0.634      0.007     85.368      0.000
+
+Latent Class 2
+
+ CDHOUSE
+    Category 1         0.178      0.007     24.035      0.000
+    Category 2         0.143      0.006     22.206      0.000
+    Category 3         0.459      0.013     36.312      0.000
+    Category 4         0.084      0.007     11.580      0.000
+    Category 5         0.136      0.012     11.180      0.000
+ CDASSIST
+    Category 1         0.194      0.005     36.332      0.000
+    Category 2         0.134      0.013     10.354      0.000
+    Category 3         0.672      0.014     49.055      0.000
+    Category 4         0.000      0.000      0.000      1.000
+    Category 5         0.000      0.000      0.000      1.000
+ CDHELP
+    Category 1         0.395      0.019     21.164      0.000
+    Category 2         0.191      0.009     20.924      0.000
+    Category 3         0.267      0.019     14.143      0.000
+    Category 4         0.086      0.006     14.559      0.000
+    Category 5         0.060      0.006      9.846      0.000
+ CDSOCIAL
+    Category 1         0.237      0.013     18.117      0.000
+    Category 2         0.141      0.011     12.340      0.000
+    Category 3         0.342      0.018     18.497      0.000
+    Category 4         0.128      0.014      9.222      0.000
+    Category 5         0.153      0.011     13.759      0.000
+ CDDISCUS
+    Category 1         0.617      0.014     42.576      0.000
+    Category 2         0.383      0.014     26.476      0.000
+
+
+LATENT CLASS ODDS RATIO RESULTS
+
+                                         (Est. - 1) Two-Tailed
+                    Estimate       S.E.     / S.E.    P-Value
+
+Latent Class 1 Compared to Latent Class 2
+
+ CDHOUSE
+    Category > 1       8.618      1.439      5.295      0.000
+    Category > 2       9.524      1.071      7.958      0.000
+    Category > 3      13.737      0.882     14.438      0.000
+    Category > 4      10.724      0.702     13.843      0.000
+ CDASSIST
+    Category > 1     395.256    277.333      1.422      0.155
+    Category > 2     489.441    304.768      1.603      0.109
+    Category > 3   *********      0.000    999.000    999.000
+    Category > 4   *********      0.000    999.000    999.000
+ CDHELP
+    Category > 1   *********      0.000    999.000    999.000
+    Category > 2   *********      0.000    999.000    999.000
+    Category > 3   *********      0.000    999.000    999.000
+    Category > 4   *********      0.000    999.000    999.000
+ CDSOCIAL
+    Category > 1      10.585      1.361      7.041      0.000
+    Category > 2      11.460      0.855     12.228      0.000
+    Category > 3      12.037      1.663      6.636      0.000
+    Category > 4       9.759      0.791     11.078      0.000
+ CDDISCUS
+    Category > 1       2.784      0.220      8.093      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.809E-04
+       (ratio of smallest to largest eigenvalue)
+
+
+TESTS OF CATEGORICAL LATENT VARIABLE MULTINOMIAL LOGISTIC REGRESSIONS USING
+THE 3-STEP PROCEDURE
+
+   WARNING:  LISTWISE DELETION IS APPLIED TO THE AUXILIARY VARIABLES IN THE
+   ANALYSIS.  TO AVOID LISTWISE DELETION, DATA IMPUTATION CAN BE USED
+   FOR THE AUXILIARY VARIABLES FOLLOWED BY ANALYSIS WITH TYPE=IMPUTATION.
+   NUMBER OF DELETED OBSERVATIONS:  12859
+   NUMBER OF OBSERVATIONS USED:  19269
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ C#1      ON
+    SEX                0.209      0.190      1.098      0.272
+    AGE55_64           0.402      0.154      2.619      0.009
+    AGE65_BI           0.691      0.139      4.990      0.000
+    RACEG21_          -0.436      0.116     -3.765      0.000
+    NOHS              -0.540      0.218     -2.481      0.013
+    HSGRAD            -0.209      0.084     -2.503      0.012
+    SOMECOLL          -0.316      0.087     -3.632      0.000
+    INC15             -0.627      0.259     -2.417      0.016
+    INC1525           -0.346      0.231     -1.497      0.134
+    INC2550           -0.022      0.271     -0.083      0.934
+    EMP_EMPL           0.896      0.185      4.837      0.000
+    EMP_UNEM           0.230      0.093      2.464      0.014
+    GENHLTH_           0.918      0.081     11.290      0.000
+    DRNKANY5           0.386      0.104      3.704      0.000
+    SMOKE100           0.131      0.062      2.113      0.035
+
+ Intercepts
+    C#1                0.205      0.232      0.885      0.376
+
+Parameterization using Reference Class 1
+
+ C#2      ON
+    SEX               -0.209      0.190     -1.098      0.272
+    AGE55_64          -0.402      0.154     -2.619      0.009
+    AGE65_BI          -0.691      0.139     -4.990      0.000
+    RACEG21_           0.436      0.116      3.765      0.000
+    NOHS               0.540      0.218      2.481      0.013
+    HSGRAD             0.209      0.084      2.503      0.012
+    SOMECOLL           0.316      0.087      3.632      0.000
+    INC15              0.627      0.259      2.417      0.016
+    INC1525            0.346      0.231      1.497      0.134
+    INC2550            0.022      0.271      0.083      0.934
+    EMP_EMPL          -0.896      0.185     -4.837      0.000
+    EMP_UNEM          -0.230      0.093     -2.464      0.014
+    GENHLTH_          -0.918      0.081    -11.290      0.000
+    DRNKANY5          -0.386      0.104     -3.704      0.000
+    SMOKE100          -0.131      0.062     -2.113      0.035
+
+ Intercepts
+    C#2               -0.205      0.232     -0.885      0.376
+
+
+TECHNICAL 10 OUTPUT
+
+
+     MODEL FIT INFORMATION FOR THE LATENT CLASS INDICATOR MODEL PART
+
+
+     RESPONSE PATTERNS
+
+     No.  Pattern    No.  Pattern    No.  Pattern    No.  Pattern
+       1  00000        2  10000        3  20000        4  30000
+       5  40000        6  01000        7  11000        8  21000
+       9  31000       10  41000       11  02000       12  12000
+      13  22000       14  32000       15  42000       16  00100
+      17  10100       18  20100       19  30100       20  40100
+      21  01100       22  11100       23  21100       24  31100
+      25  41100       26  02100       27  12100       28  22100
+      29  32100       30  42100       31  00200       32  10200
+      33  20200       34  30200       35  40200       36  01200
+      37  11200       38  21200       39  41200       40  02200
+      41  12200       42  22200       43  32200       44  42200
+      45  00300       46  10300       47  20300       48  01300
+      49  11300       50  21300       51  31300       52  41300
+      53  02300       54  12300       55  22300       56  32300
+      57  42300       58  00400       59  10400       60  20400
+      61  40400       62  01400       63  11400       64  21400
+      65  31400       66  02400       67  12400       68  22400
+      69  32400       70  42400       71  03400       72  13400
+      73  23400       74  33400       75  43400       76  04400
+      77  14400       78  24400       79  34400       80  44400
+      81  00010       82  10010       83  20010       84  30010
+      85  40010       86  01010       87  11010       88  21010
+      89  31010       90  02010       91  12010       92  22010
+      93  32010       94  42010       95  00110       96  10110
+      97  20110       98  30110       99  40110      100  01110
+     101  11110      102  21110      103  31110      104  41110
+     105  02110      106  12110      107  22110      108  32110
+     109  42110      110  00210      111  10210      112  20210
+     113  40210      114  01210      115  11210      116  21210
+     117  31210      118  02210      119  12210      120  22210
+     121  32210      122  42210      123  00310      124  10310
+     125  20310      126  01310      127  11310      128  21310
+     129  02310      130  12310      131  22310      132  32310
+     133  42310      134  00410      135  20410      136  01410
+     137  11410      138  21410      139  31410      140  02410
+     141  12410      142  22410      143  32410      144  42410
+     145  03410      146  13410      147  23410      148  33410
+     149  43410      150  04410      151  14410      152  24410
+     153  34410      154  44410      155  00020      156  10020
+     157  20020      158  30020      159  40020      160  01020
+     161  11020      162  21020      163  31020      164  41020
+     165  02020      166  12020      167  22020      168  32020
+     169  42020      170  00120      171  10120      172  20120
+     173  30120      174  40120      175  01120      176  11120
+     177  21120      178  31120      179  41120      180  02120
+     181  12120      182  22120      183  32120      184  42120
+     185  00220      186  10220      187  20220      188  30220
+     189  40220      190  01220      191  11220      192  21220
+     193  31220      194  41220      195  02220      196  12220
+     197  22220      198  32220      199  42220      200  00320
+     201  10320      202  20320      203  30320      204  01320
+     205  11320      206  21320      207  31320      208  02320
+     209  12320      210  22320      211  32320      212  42320
+     213  00420      214  20420      215  40420      216  01420
+     217  11420      218  21420      219  02420      220  12420
+     221  22420      222  32420      223  42420      224  03420
+     225  13420      226  23420      227  33420      228  43420
+     229  04420      230  14420      231  24420      232  34420
+     233  44420      234  00030      235  10030      236  20030
+     237  30030      238  40030      239  01030      240  11030
+     241  21030      242  31030      243  41030      244  02030
+     245  12030      246  22030      247  32030      248  42030
+     249  10130      250  30130      251  40130      252  01130
+     253  11130      254  21130      255  31130      256  41130
+     257  02130      258  12130      259  22130      260  32130
+     261  42130      262  00230      263  10230      264  20230
+     265  30230      266  11230      267  21230      268  41230
+     269  02230      270  12230      271  22230      272  32230
+     273  42230      274  00330      275  20330      276  31330
+     277  41330      278  12330      279  22330      280  32330
+     281  42330      282  30430      283  11430      284  12430
+     285  22430      286  32430      287  42430      288  03430
+     289  13430      290  23430      291  33430      292  43430
+     293  04430      294  14430      295  24430      296  34430
+     297  44430      298  00040      299  10040      300  20040
+     301  30040      302  40040      303  01040      304  11040
+     305  21040      306  31040      307  41040      308  02040
+     309  12040      310  22040      311  32040      312  42040
+     313  00140      314  10140      315  20140      316  30140
+     317  40140      318  01140      319  11140      320  21140
+     321  31140      322  41140      323  02140      324  12140
+     325  22140      326  32140      327  42140      328  00240
+     329  10240      330  20240      331  40240      332  01240
+     333  11240      334  21240      335  31240      336  41240
+     337  02240      338  12240      339  22240      340  32240
+     341  42240      342  00340      343  10340      344  20340
+     345  30340      346  01340      347  11340      348  21340
+     349  02340      350  12340      351  22340      352  32340
+     353  42340      354  00440      355  10440      356  20440
+     357  40440      358  11440      359  02440      360  12440
+     361  22440      362  32440      363  42440      364  03440
+     365  13440      366  23440      367  33440      368  43440
+     369  04440      370  14440      371  24440      372  34440
+     373  44440      374  00001      375  10001      376  20001
+     377  40001      378  01001      379  11001      380  21001
+     381  31001      382  41001      383  02001      384  12001
+     385  22001      386  32001      387  42001      388  00101
+     389  10101      390  20101      391  30101      392  40101
+     393  01101      394  11101      395  21101      396  31101
+     397  02101      398  12101      399  22101      400  32101
+     401  42101      402  00201      403  10201      404  20201
+     405  30201      406  40201      407  01201      408  11201
+     409  21201      410  31201      411  41201      412  02201
+     413  12201      414  22201      415  32201      416  42201
+     417  00301      418  10301      419  20301      420  40301
+     421  01301      422  11301      423  41301      424  02301
+     425  12301      426  22301      427  32301      428  00401
+     429  10401      430  20401      431  40401      432  01401
+     433  11401      434  21401      435  02401      436  12401
+     437  22401      438  32401      439  42401      440  03401
+     441  13401      442  23401      443  33401      444  43401
+     445  04401      446  14401      447  24401      448  34401
+     449  44401      450  00011      451  10011      452  20011
+     453  30011      454  40011      455  01011      456  11011
+     457  21011      458  31011      459  41011      460  02011
+     461  12011      462  22011      463  32011      464  42011
+     465  00111      466  10111      467  20111      468  40111
+     469  01111      470  11111      471  21111      472  41111
+     473  02111      474  12111      475  22111      476  32111
+     477  42111      478  00211      479  10211      480  20211
+     481  40211      482  01211      483  11211      484  21211
+     485  31211      486  41211      487  02211      488  12211
+     489  22211      490  32211      491  42211      492  00311
+     493  10311      494  20311      495  01311      496  11311
+     497  21311      498  41311      499  12311      500  22311
+     501  32311      502  42311      503  00411      504  10411
+     505  20411      506  01411      507  11411      508  21411
+     509  02411      510  12411      511  22411      512  32411
+     513  03411      514  13411      515  23411      516  33411
+     517  43411      518  04411      519  14411      520  24411
+     521  34411      522  44411      523  00021      524  10021
+     525  20021      526  30021      527  40021      528  01021
+     529  11021      530  21021      531  31021      532  41021
+     533  02021      534  12021      535  22021      536  32021
+     537  42021      538  00121      539  10121      540  20121
+     541  30121      542  01121      543  11121      544  21121
+     545  31121      546  41121      547  02121      548  12121
+     549  22121      550  32121      551  42121      552  00221
+     553  10221      554  20221      555  30221      556  40221
+     557  01221      558  11221      559  21221      560  31221
+     561  41221      562  02221      563  12221      564  22221
+     565  32221      566  42221      567  00321      568  10321
+     569  20321      570  01321      571  11321      572  21321
+     573  41321      574  02321      575  12321      576  22321
+     577  32321      578  42321      579  10421      580  20421
+     581  30421      582  40421      583  21421      584  41421
+     585  02421      586  12421      587  22421      588  32421
+     589  42421      590  03421      591  13421      592  23421
+     593  33421      594  43421      595  04421      596  14421
+     597  24421      598  34421      599  44421      600  00031
+     601  10031      602  20031      603  30031      604  40031
+     605  01031      606  11031      607  21031      608  31031
+     609  41031      610  02031      611  12031      612  22031
+     613  32031      614  42031      615  20131      616  40131
+     617  01131      618  11131      619  21131      620  31131
+     621  41131      622  02131      623  12131      624  22131
+     625  32131      626  42131      627  00231      628  20231
+     629  30231      630  11231      631  21231      632  31231
+     633  41231      634  02231      635  12231      636  22231
+     637  32231      638  42231      639  00331      640  21331
+     641  41331      642  02331      643  12331      644  22331
+     645  32331      646  42331      647  00431      648  10431
+     649  20431      650  30431      651  40431      652  11431
+     653  21431      654  41431      655  02431      656  12431
+     657  22431      658  32431      659  42431      660  03431
+     661  13431      662  23431      663  33431      664  43431
+     665  04431      666  14431      667  24431      668  34431
+     669  44431      670  00041      671  10041      672  20041
+     673  30041      674  40041      675  01041      676  11041
+     677  21041      678  31041      679  41041      680  02041
+     681  12041      682  22041      683  32041      684  42041
+     685  00141      686  20141      687  40141      688  01141
+     689  11141      690  21141      691  31141      692  41141
+     693  02141      694  12141      695  22141      696  32141
+     697  42141      698  00241      699  20241      700  40241
+     701  01241      702  11241      703  21241      704  41241
+     705  02241      706  12241      707  22241      708  32241
+     709  42241      710  00341      711  20341      712  11341
+     713  21341      714  02341      715  12341      716  22341
+     717  32341      718  42341      719  00441      720  20441
+     721  30441      722  40441      723  01441      724  11441
+     725  21441      726  31441      727  41441      728  02441
+     729  12441      730  22441      731  32441      732  42441
+     733  03441      734  13441      735  23441      736  33441
+     737  43441      738  04441      739  14441      740  24441
+     741  34441      742  44441      743  *0000      744  *1000
+     745  *2000      746  *0100      747  *1100      748  *2100
+     749  *0200      750  *2200      751  *0300      752  *1300
+     753  *2300      754  *1400      755  *2400      756  *3400
+     757  *4400      758  *0010      759  *1010      760  *2010
+     761  *0110      762  *1110      763  *2110      764  *2210
+     765  *2310      766  *4410      767  *0020      768  *1020
+     769  *2020      770  *0120      771  *1120      772  *2120
+     773  *0220      774  *2220      775  *2320      776  *0420
+     777  *3420      778  *4420      779  *2030      780  *1130
+     781  *2130      782  *2330      783  *3430      784  *4430
+     785  *0040      786  *1040      787  *2040      788  *0140
+     789  *2140      790  *0240      791  *2240      792  *1340
+     793  *3440      794  *4440      795  *0001      796  *2101
+     797  *2201      798  *2301      799  *0401      800  *3401
+     801  *4401      802  *2011      803  *1111      804  *2111
+     805  *0211      806  *2211      807  *0311      808  *0411
+     809  *3411      810  *4411      811  *0021      812  *1021
+     813  *2021      814  *0121      815  *1121      816  *2121
+     817  *0221      818  *1221      819  *2221      820  *2321
+     821  *3421      822  *4421      823  *0031      824  *2031
+     825  *2131      826  *2231      827  *3431      828  *4431
+     829  *0041      830  *1041      831  *2041      832  *0141
+     833  *2141      834  *0241      835  *1241      836  *2241
+     837  *1341      838  *1441      839  *2441      840  *3441
+     841  *4441      842  ****0      843  ****1      844  000*0
+     845  200*0      846  300*0      847  400*0      848  010*0
+     849  110*0      850  210*0      851  310*0      852  020*0
+     853  120*0      854  220*0      855  320*0      856  420*0
+     857  001*0      858  101*0      859  301*0      860  111*0
+     861  211*0      862  021*0      863  121*0      864  221*0
+     865  321*0      866  421*0      867  102*0      868  202*0
+     869  112*0      870  212*0      871  312*0      872  022*0
+     873  122*0      874  222*0      875  322*0      876  422*0
+     877  013*0      878  213*0      879  123*0      880  223*0
+     881  004*0      882  204*0      883  024*0      884  224*0
+     885  134*0      886  234*0      887  334*0      888  434*0
+     889  044*0      890  144*0      891  244*0      892  344*0
+     893  444*0      894  000*1      895  300*1      896  400*1
+     897  210*1      898  310*1      899  410*1      900  020*1
+     901  120*1      902  220*1      903  320*1      904  420*1
+     905  101*1      906  111*1      907  211*1      908  121*1
+     909  221*1      910  421*1      911  002*1      912  102*1
+     913  202*1      914  012*1      915  112*1      916  212*1
+     917  412*1      918  122*1      919  222*1      920  322*1
+     921  422*1      922  003*1      923  223*1      924  104*1
+     925  214*1      926  024*1      927  224*1      928  424*1
+     929  134*1      930  234*1      931  334*1      932  434*1
+     933  044*1      934  144*1      935  244*1      936  344*1
+     937  444*1      938  *00*0      939  *10*0      940  *20*0
+     941  *11*0      942  *21*0      943  *02*0      944  *12*0
+     945  *22*0      946  *23*0      947  *24*0      948  *34*0
+     949  *44*0      950  *20*1      951  *01*1      952  *21*1
+     953  *02*1      954  *22*1      955  *13*1      956  *34*1
+     957  *44*1      958  0000*      959  2000*      960  0200*
+     961  2200*      962  4200*      963  2110*      964  0020*
+     965  1120*      966  2220*      967  3220*      968  2030*
+     969  1230*      970  0040*      971  0340*      972  3340*
+     973  4340*      974  2440*      975  3440*      976  2011*
+     977  2111*      978  0021*      979  2021*      980  1221*
+     981  3221*      982  1131*      983  2231*      984  3102*
+     985  2202*      986  4202*      987  1112*      988  2212*
+     989  3212*      990  4212*      991  1022*      992  2022*
+     993  0222*      994  1222*      995  2222*      996  4222*
+     997  0132*      998  2232*      999  4232*     1000  2242*
+    1001  2342*     1002  3342*     1003  1442*     1004  2442*
+    1005  4442*     1006  2003*     1007  4003*     1008  0203*
+    1009  2203*     1010  4203*     1011  3113*     1012  2213*
+    1013  2133*     1014  2343*     1015  3343*     1016  4343*
+    1017  2443*     1018  4443*     1019  1004*     1020  2004*
+    1021  4004*     1022  2104*     1023  2204*     1024  4204*
+    1025  1114*     1026  1214*     1027  2214*     1028  4214*
+    1029  2224*     1030  2234*     1031  0144*     1032  1344*
+    1033  2344*     1034  3344*     1035  4344*     1036  0444*
+    1037  1444*     1038  2444*     1039  3444*     1040  4444*
+    1041  0****     1042  1****     1043  2****     1044  3****
+    1045  4****     1046  *00**     1047  *20**     1048  *01**
+    1049  *44**     1050  100**     1051  200**     1052  400**
+    1053  310**     1054  120**     1055  220**     1056  320**
+    1057  420**     1058  021**     1059  221**     1060  002**
+    1061  222**     1062  422**     1063  223**     1064  004**
+    1065  034**     1066  134**     1067  234**     1068  334**
+    1069  434**     1070  244**     1071  344**     1072  444**
+    1073  0**00     1074  1**00     1075  2**00     1076  3**00
+    1077  4**00     1078  0**10     1079  1**10     1080  2**10
+    1081  3**10     1082  1**20     1083  2**20     1084  3**20
+    1085  4**20     1086  0**30     1087  2**30     1088  3**30
+    1089  4**30     1090  0**40     1091  2**40     1092  3**40
+    1093  4**40     1094  0**01     1095  1**01     1096  2**01
+    1097  1**11     1098  2**11     1099  4**11     1100  0**21
+    1101  1**21     1102  2**21     1103  4**21     1104  1**31
+    1105  2**31     1106  3**31     1107  4**31     1108  0**41
+    1109  1**41     1110  2**41     1111  3**41     1112  4**41
+    1113  00*00     1114  40*00     1115  22*00     1116  32*00
+    1117  02*10     1118  12*10     1119  22*10     1120  42*10
+    1121  20*20     1122  12*20     1123  22*20     1124  32*20
+    1125  22*30     1126  32*30     1127  42*30     1128  20*40
+    1129  22*40     1130  32*40     1131  42*40     1132  00*01
+    1133  22*01     1134  11*21     1135  02*21     1136  12*21
+    1137  22*21     1138  42*21     1139  20*31     1140  32*31
+    1141  11*41     1142  22*41     1143  42*41     1144  ***00
+    1145  ***10     1146  ***20     1147  ***40     1148  ***01
+    1149  ***11     1150  ***21     1151  ***31     1152  ***41
+    1153  *000*     1154  *102*     1155  *222*     1156  *444*
+    1157  21**0     1158  12**0     1159  32**0     1160  42**0
+    1161  02**1     1162  *1*00     1163  *2*20     1164  *1*30
+    1165  *0*11     1166  *2*21     1167  *2*31     1168  *2*41
+    1169  0***0     1170  1***0     1171  2***0     1172  3***0
+    1173  4***0     1174  0***1     1175  1***1     1176  2***1
+    1177  3***1     1178  4***1     1179  20***     1180  11***
+    1181  21***     1182  12***     1183  22***     1184  4**4*
+    1185  ***0*     1186  ***3*     1187  ***4*     1188  *2**0
+    1189  *0**1     1190  *2**1     1191  *1*0*     1192  *1***
+    1193  22*0*     1194  42*2*
+
+
+     RESPONSE PATTERN FREQUENCIES AND CHI-SQUARE CONTRIBUTIONS
+
+    Response          Frequency     Standardized  Chi-square Contribution
+     Pattern    Observed  Estimated   Residual    Pearson   Loglikelihood  Deleted
+                                     (z-score)
+         1       352.37      21.51       5.80      99.82       216.08
+         2        68.86      17.36       5.79     100.00       189.84
+         3        40.19      55.60      -1.20       3.49       -14.88
+         4        16.88      10.16       1.22       4.45        17.68
+         5        51.93      16.51       5.05      76.01       121.30
+         6        31.25      14.82       2.47      18.19        47.93
+         7        62.08      11.96       5.79      99.95       203.44
+         8        41.55      38.31       0.30       0.26         8.50
+         9         3.17       7.00      -0.84       2.09        -4.81
+        10         5.87      11.38      -0.95       2.66        -7.44
+        11        47.60      74.51      -1.81       9.40       -34.86
+        12        21.43      60.14      -2.89      24.75       -40.49
+        13       132.77     192.57      -2.50      18.56      -101.20
+        14        15.90      35.18      -1.88      10.56       -25.17
+        15        16.42      57.18      -3.13      29.03       -39.56
+        16        56.22      10.38       5.79      99.99       191.45
+        17        23.62       8.38       3.05      27.70        51.10
+        18         6.48      26.82      -2.28      15.43       -18.42
+        19         2.28       4.90      -0.69       1.35        -2.77
+        20         0.54       7.96      -1.52       6.91        -2.91
+        21        46.73       7.15       5.79      99.99       174.39
+        22        39.70       5.77       5.79      99.99       154.10
+        23        18.76      18.48       0.04      -2.13        13.17
+        24         6.08       3.38       0.85       2.16         7.02
+        25         6.76       5.49       0.31       0.29         2.77
+        26        26.09      35.95      -0.95       2.68       -15.13
+        27        33.28      29.01       0.46       0.62         8.30
+        28        59.76      92.90      -2.00      11.82       -54.05
+        29         5.44      16.97      -1.62       7.83       -12.43
+        30         4.00      27.58      -2.60      20.16       -15.30
+        31        60.74      14.52       5.79      99.97       176.26
+        32         8.23      11.72      -0.59       1.02        -5.04
+        33         9.83      37.54      -2.62      20.45       -25.93
+        34         5.51       6.86      -0.30       0.26        -2.33
+        35         7.30      11.15      -0.67       1.32        -5.95
+        36        23.78      10.01       2.52      18.92        39.94
+        37        21.56       8.08       2.75      22.41        44.92
+        38        13.36      25.87      -1.43       6.04       -18.20
+        39         1.19       7.68      -1.36       5.48        -4.48
+        40        41.94      50.31      -0.68       1.37       -13.42
+        41        34.53      40.61      -0.55       0.91       -11.13
+        42       101.27     130.02      -1.46       6.33       -47.31
+        43         3.96      23.75      -2.35      16.48       -13.68
+        44        13.71      38.60      -2.32      16.05       -28.05
+        45        37.36       4.69       5.79      99.91       158.74
+        46         8.39       3.79       1.37       5.57        13.90
+        47         2.69      12.13      -1.57       7.34        -7.76
+        48         6.34       3.23       1.00       2.95         9.47
+        49        11.76       2.61       3.28      32.06        36.54
+        50         2.78       8.36      -1.12       3.71        -5.81
+        51         2.48       1.53       0.45       0.59         2.64
+        52         2.41       2.48      -0.03       0.00         0.11
+        53         5.77      16.26      -1.51       6.76       -12.07
+        54        12.27      13.12      -0.14      -0.02         0.25
+        55        49.80      42.02       0.70       1.44        17.89
+        56         4.54       7.68      -0.66       1.28        -4.71
+        57         0.47      12.48      -1.97      11.56        -3.08
+        58        31.64       3.29       5.79     100.00       143.14
+        59         2.82       2.66       0.06       0.00         0.09
+        60        11.74       8.52       0.64       1.20         6.78
+        61         2.04       2.60      -0.20       0.12        -1.10
+        62         6.61       2.27       1.67       8.32        13.91
+        63         6.81       1.83       2.13      13.54        17.65
+        64         1.57       5.87      -1.03       3.15        -4.21
+        65         0.10       1.08      -0.55       0.90        -0.47
+        66         6.14      11.41      -0.90       2.43        -7.84
+        67         3.92       9.21      -1.01       3.04        -6.96
+        68        54.48      29.56       2.66      21.00        65.44
+        69         0.81       5.49      -1.16       3.99        -3.12
+        70         0.71       9.17      -1.62       7.81        -3.66
+        71        13.13       1.21       5.79     100.00        62.59
+        72        15.66       1.13       5.79      99.99        81.46
+        73        77.29       7.81       5.79      99.95       196.06
+        74        23.15       8.24       3.01      26.98        47.78
+        75        21.58      31.11      -0.99       2.91       -16.61
+        76        42.67       3.82       5.79      99.88       204.54
+        77        37.40       3.57       5.79     100.00       175.48
+        78        62.10      24.66       4.37      56.86       116.17
+        79        18.03      26.01      -0.91       2.45       -13.14
+        80        67.04      98.22      -1.83       9.89       -52.73
+        81        69.41      12.78       5.79      99.97       197.14
+        82        15.75      10.31       0.98       2.87        12.90
+        83         8.92      33.02      -2.43      17.51       -21.73
+        84         2.04       6.03      -0.94       2.64        -4.38
+        85         4.42       9.80      -1.00       2.95        -7.23
+        86        16.47       8.80       1.50       6.67        21.13
+        87        24.08       7.11       3.69      40.50        60.54
+        88        23.36      22.75       0.07       0.00         2.35
+        89         2.25       4.16      -0.54       0.87        -2.52
+        90        29.00      44.25      -1.33       5.24       -25.83
+        91        41.35      35.72       0.55       0.51        19.97
+        92       101.44     114.36      -0.70       1.43       -27.77
+        93         1.23      20.89      -2.49      18.50        -6.97
+        94         7.87      33.96      -2.59      20.03       -23.48
+        95        14.12       6.16       1.86      10.27        23.44
+        96        18.39       4.97       3.48      36.12        50.11
+        97        25.61      15.93       1.41       5.80        27.27
+        98         1.68       2.91      -0.42       0.46        -1.23
+        99         0.65       4.73      -1.09       3.52        -2.58
+       100        12.08       4.25       2.20      14.45        24.65
+       101        51.05       3.43       5.79      99.99       201.28
+       102        37.60      10.98       4.66      63.72       104.05
+       103         0.30       2.01      -0.70       1.44        -1.15
+       104         3.23       3.26      -0.01       0.00        -0.24
+       105         7.40      21.35      -1.75       9.11       -15.25
+       106        23.79      17.23       0.92       2.50        15.20
+       107       106.62      55.17       4.02      47.96       137.89
+       108         6.76      10.08      -0.61       1.09        -5.46
+       109         6.37      16.38      -1.43       6.11       -12.03
+       110        10.59       8.63       0.39       0.45         4.32
+       111         4.68       6.96      -0.50       0.74        -3.31
+       112         2.61      22.29      -2.42      17.37       -11.02
+       113         0.04       6.62      -1.48       6.55        -0.38
+       114         2.55       5.94      -0.81       1.94        -4.49
+       115        25.31       4.80       5.42      87.58        87.04
+       116        36.50      15.36       3.12      29.05        61.60
+       117        10.40       2.81       2.63      20.56        27.33
+       118         8.27      29.88      -2.29      15.62       -21.07
+       119        62.81      24.11       4.57      62.02       124.44
+       120        68.93      77.22      -0.55       0.88       -17.24
+       121         3.46      14.11      -1.64       0.96        -0.52
+       122         7.75      22.93      -1.84      10.05       -17.06
+       123         3.32       2.79       0.18       0.09         0.89
+       124         7.12       2.25       1.88      10.51        15.93
+       125         1.41       7.20      -1.25       4.67        -4.69
+       126         2.22       1.92       0.13       0.05         0.60
+       127         6.15       1.55       2.14      13.62        16.99
+       128         2.33       4.96      -0.69       1.40        -3.62
+       129        19.66       9.66       1.87      10.37        27.03
+       130         6.89       7.79      -0.19       0.08        -0.84
+       131        41.81      24.95       1.96      11.38        43.10
+       132        19.24       4.56       3.98      47.29        55.18
+       133         1.36       7.41      -1.29       4.94        -4.70
+       134         1.39       1.96      -0.24       0.16        -1.00
+       135        33.65       5.07       5.79      99.98       125.61
+       136         0.27       1.35      -0.54       0.87        -0.88
+       137         7.59       1.09       3.61      38.83        29.16
+       138         0.35       3.49      -0.98       2.83        -1.62
+       139         0.16       0.65      -0.35       0.37        -0.45
+       140         0.62       6.78      -1.37       5.60        -2.99
+       141         3.45       5.47      -0.50       0.75        -3.36
+       142         6.42      17.57      -1.54       7.08       -13.09
+       143        11.06       3.28       2.49      18.44        26.63
+       144         0.24       5.52      -1.30       5.06        -1.50
+       145         3.94       0.92       1.81       9.81        11.24
+       146        21.96       0.86       5.79      99.99       141.27
+       147       123.98       5.97       5.79      99.93       194.02
+       148        29.26       6.29       5.30      83.81        90.50
+       149        13.84      23.77      -1.18       4.13       -16.04
+       150         7.01       2.92       1.39       5.70        13.42
+       151        10.11       2.73       2.59      20.01        27.26
+       152        23.88      18.84       0.67       1.32        12.97
+       153        16.20      19.88      -0.48       0.65        -5.29
+       154        36.99      75.05      -2.55      19.30       -52.08
+       155        26.00      31.04      -0.52       0.81       -10.23
+       156         3.29      25.06      -2.52      18.91       -13.42
+       157        45.30      80.23      -2.26      13.82       -35.91
+       158         4.61      14.66      -1.52       6.88       -10.74
+       159         3.28      23.82      -2.44      17.72       -13.10
+       160        20.57      21.39      -0.10       0.03        -1.30
+       161        15.97      17.27      -0.18       0.08        -1.42
+       162        32.10      55.29      -1.81       9.72       -33.78
+       163         3.26      10.10      -1.25       4.60        -6.76
+       164         3.54      16.42      -1.84      10.10       -10.79
+       165        49.02     107.53      -3.27      31.81       -79.05
+       166        34.79      86.79      -3.24      30.73       -55.86
+       167       407.83     277.91       4.54      60.72       205.73
+       168        40.35      50.76      -0.85       2.14       -18.19
+       169       110.17      82.51       1.77       9.26        62.02
+       170         8.52      14.98      -0.97       2.78        -9.51
+       171         4.26      12.09      -1.30       5.05        -8.33
+       172         9.41      38.71      -2.73      22.11       -25.04
+       173         1.12       7.07      -1.30       4.97        -3.76
+       174        34.36      11.49       3.91      45.51        75.59
+       175        12.08      10.32       0.32       0.30         3.42
+       176         7.18       8.33      -0.23       0.15        -1.62
+       177        44.35      26.67       1.98      11.43        52.14
+       178         4.19       4.87      -0.18       0.09        -1.35
+       179         0.83       7.92      -1.46       6.35        -3.76
+       180        11.57      51.87      -3.24      31.31       -34.32
+       181        33.19      41.87      -0.78       1.80       -15.58
+       182       165.00     134.07       1.55       7.14        68.83
+       183        16.91      24.49      -0.89       2.34       -12.98
+       184        91.92      39.81       4.79      68.23       154.93
+       185        45.25      20.96       3.07      28.15        69.03
+       186         2.79      16.92      -1.99      11.78        -9.55
+       187        39.84      54.17      -1.13       3.31       -15.73
+       188         0.52       9.90      -1.73       8.89        -3.06
+       189         2.20      16.08      -2.01      11.99        -8.78
+       190         2.09      14.44      -1.88      10.56        -8.24
+       191        53.69      11.66       5.79      99.82       170.27
+       192        21.33      37.33      -1.52       6.85       -24.85
+       193         0.59       6.82      -1.38       5.69        -2.91
+       194         1.00      11.08      -1.75       9.16        -4.89
+       195        13.02      72.60      -4.06      48.88       -44.06
+       196        46.32      58.60      -0.93       2.54       -19.28
+       197       373.72     187.64       5.81      99.85       214.86
+       198        36.52      34.28       0.22       0.15         4.44
+       199        29.62      55.71      -2.03      12.03       -32.74
+       200         2.65       6.77      -0.92       2.50        -5.19
+       201         2.03       5.47      -0.85       2.16        -4.15
+       202         2.39      17.51      -2.09      13.05        -9.34
+       203         0.66       3.20      -0.82       2.02        -2.13
+       204         6.06       4.67       0.37       0.38         4.10
+       205         4.57       3.77       0.24       0.17         1.58
+       206         6.99      12.06      -0.85       2.13        -7.93
+       207         1.37       2.20      -0.33       0.32        -1.40
+       208         2.86      23.46      -2.46      18.08       -12.19
+       209        17.82      18.94      -0.15      -0.03         0.46
+       210        74.76      60.64       1.05       3.22        35.89
+       211         9.36      11.08      -0.30       0.27        -3.28
+       212         9.92      18.00      -1.10       3.63       -12.07
+       213         1.40       4.76      -0.89       2.37        -3.25
+       214         0.75      12.36      -1.91      10.90        -4.00
+       215         0.11       3.99      -1.13       3.77        -0.78
+       216         0.44       3.28      -0.91       2.45        -1.81
+       217         7.02       2.65       1.55       7.20        13.40
+       218         5.73       8.51      -0.55       0.90        -4.91
+       219         5.60      16.52      -1.56       7.22       -12.48
+       220         5.67      13.34      -1.22       4.41        -9.99
+       221        66.24      42.98       2.06      12.59        57.61
+       222         2.46       8.26      -1.17       4.08        -6.07
+       223         8.88      14.50      -0.86       2.17        -9.37
+       224         5.80       5.31       0.12       0.04         0.77
+       225        36.84       4.96       5.79      99.99       146.44
+       226       244.27      34.28       5.80      99.97       195.02
+       227       169.63      36.17       5.80      99.97       195.73
+       228       111.74     136.57      -1.23       4.38       -52.59
+       229        28.31      16.77       1.63       7.88        32.54
+       230        35.31      15.66       2.88      24.61        59.75
+       231       197.95     108.24       5.00      74.32       205.54
+       232        91.99     114.19      -1.21       4.31       -41.25
+       233       411.76     431.21      -0.55       0.75       -52.50
+       234        75.12      11.63       5.79      99.91       205.17
+       235         1.18       9.39      -1.55       7.18        -4.97
+       236         3.54      30.06      -2.80      22.45       -11.55
+       237         6.21       5.49       0.18       0.09         1.25
+       238         4.53       8.92      -0.85       2.16        -6.17
+       239         0.65       8.01      -1.51       6.77        -3.21
+       240         9.68       6.47       0.73       1.60         7.48
+       241         4.22      20.71      -2.10      13.13       -13.63
+       242         6.06       3.78       0.68       1.36         5.55
+       243         1.82       6.15      -1.01       3.05        -4.54
+       244        14.90      40.28      -2.32      15.73       -25.71
+       245        10.89      32.51      -2.20      14.31       -22.09
+       246       132.29     104.11       1.60       7.59        58.87
+       247        34.02      19.02       1.99      11.83        38.65
+       248        29.35      30.91      -0.16       0.06        -4.67
+       249         0.62       4.53      -1.07       3.38        -2.45
+       250         0.12       2.65      -0.90       2.41        -0.72
+       251         1.50       4.31      -0.78       1.82        -3.28
+       252         0.04       3.87      -1.13       3.79        -0.34
+       253         5.30       3.12       0.71       1.51         6.12
+       254         0.46       9.99      -1.75       9.09        -2.73
+       255         1.45       1.83      -0.16      -0.19         0.57
+       256         0.42       2.97      -0.86       2.19        -1.63
+       257        10.06      19.43      -1.23       4.45       -11.51
+       258         6.79      15.69      -1.30       5.05       -11.66
+       259        42.28      50.23      -0.65       1.25       -15.60
+       260        30.48       9.18       4.08      49.46        71.84
+       261        65.39      14.91       5.79     100.00       193.07
+       262         3.01       7.85      -1.00       2.97        -5.44
+       263         0.55       6.34      -1.33       5.29        -2.64
+       264         1.58      20.29      -2.41      17.26        -8.05
+       265         0.35       3.71      -1.01       3.04        -1.65
+       266         0.54       4.37      -1.06       3.35        -2.21
+       267         1.57      13.99      -1.92      11.02        -6.96
+       268         0.84       4.15      -0.94       2.64        -2.75
+       269         2.24      27.20      -2.77      22.89       -10.89
+       270         9.50      21.95      -1.54       7.06       -16.26
+       271        43.34      70.30      -1.86      10.32       -43.61
+       272        18.55      12.84       0.92       2.53        12.73
+       273        11.52      20.87      -1.19       4.19       -14.13
+       274         0.65       2.54      -0.69       1.41        -1.74
+       275         0.89       6.56      -1.28       4.89        -3.64
+       276         0.86       0.83       0.02       0.00         0.01
+       277         0.56       1.34      -0.39       0.46        -1.02
+       278         9.16       7.09       0.45       0.59         5.50
+       279        50.57      22.72       3.39      34.14        79.88
+       280         5.60       4.15       0.41       0.50         3.09
+       281        12.87       6.74       1.37       5.56        15.76
+       282         0.02       0.98      -0.56       0.94        -0.14
+       283         7.65       1.00       3.85      44.12        30.60
+       284         1.94       5.08      -0.81       1.93        -3.90
+       285        17.54      16.63       0.13       0.04         1.17
+       286         3.63       3.65      -0.01       0.00        -0.25
+       287         0.11       7.53      -1.57       7.30        -0.96
+       288        13.48       7.92       1.14       3.87        15.62
+       289        25.28       7.40       3.81      43.20        60.69
+       290       226.17      51.12       5.80      99.86       188.63
+       291       336.84      53.93       5.80      99.98       195.04
+       292       252.29     203.64       1.98      11.32        90.67
+       293         6.77      25.01      -2.11      13.20       -16.09
+       294         2.76      23.36      -2.47      18.16       -11.83
+       295       121.65     161.41      -1.82       9.79       -67.00
+       296       190.46     170.28       0.90       2.36        37.58
+       297       451.27     643.01      -4.43      57.01      -336.92
+       298        18.30      13.93       0.68       1.37         9.83
+       299         0.48      11.25      -1.86      10.31        -2.97
+       300        10.15      36.01      -2.50      18.12       -21.45
+       301         5.36       6.58      -0.28       0.23        -2.25
+       302        28.67      10.69       3.19      30.24        56.51
+       303        15.56       9.60       1.11       3.69        14.73
+       304         4.92       7.75      -0.59       1.03        -4.58
+       305        11.53      24.82      -1.55       6.96       -15.07
+       306         4.11       4.53      -0.11       0.04        -0.84
+       307         7.20       7.37      -0.04       0.00        -0.59
+       308        17.76      48.26      -2.55      19.27       -35.44
+       309        15.76      38.95      -2.15      13.65       -25.32
+       310        93.85     124.73      -1.60       7.61       -50.00
+       311        16.22      22.78      -0.80       1.89       -10.68
+       312       120.43      37.03       5.80      99.98       202.77
+       313         8.05       6.72       0.30       0.00         5.81
+       314         2.52       5.43      -0.72       1.43        -2.77
+       315         1.50      17.37      -2.21      14.44        -6.74
+       316         0.72       3.17      -0.80       1.81        -1.63
+       317         1.50       5.16      -0.93       2.55        -3.21
+       318         3.31       4.63      -0.36       0.38        -2.37
+       319         2.87       3.74      -0.26       0.18        -1.08
+       320         3.28      11.97      -1.45       6.29        -8.02
+       321         0.98       2.19      -0.47       0.66        -1.63
+       322         2.56       3.55      -0.30       0.27        -1.83
+       323         0.29      23.28      -2.76      22.70        -2.54
+       324         1.92      18.79      -2.26      15.15        -8.71
+       325        72.05      60.18       0.89       2.31        28.79
+       326        15.68      10.99       0.82       2.00        11.05
+       327        17.84      17.87       0.00      -0.05         1.82
+       328         0.83       9.41      -1.62       7.81        -3.99
+       329         1.00       7.59      -1.39       5.72        -3.92
+       330         3.63      24.31      -2.43      17.57       -13.28
+       331         0.11       7.22      -1.53       7.01        -0.89
+       332         2.34       6.48      -0.94       2.64        -4.87
+       333         5.58       5.23       0.09       0.01         1.24
+       334         5.63      16.76      -1.58       7.39       -12.37
+       335         2.55       3.06      -0.17       0.08        -1.01
+       336         2.16       4.97      -0.73       1.59        -3.73
+       337        18.12      32.58      -1.47       6.40       -20.18
+       338         0.18      26.30      -2.95      25.94        -1.80
+       339        63.56      84.22      -1.31       5.05       -33.33
+       340        27.77      15.38       1.83       9.97        32.66
+       341        19.94      25.00      -0.59       1.02        -8.39
+       342         0.20       3.04      -0.94       2.65        -1.10
+       343         0.39       2.45      -0.76       1.74        -1.46
+       344         0.54       7.86      -1.51       6.81        -2.90
+       345         0.84       1.44      -0.29       0.25        -0.96
+       346         1.26       2.10      -0.34       0.33        -1.19
+       347         4.01       1.69       1.03       3.18         6.94
+       348         1.05       5.41      -1.09       3.51        -3.39
+       349         1.75      10.53      -1.57       7.33        -6.35
+       350         1.99       8.50      -1.29       4.98        -5.60
+       351         7.37      27.22      -2.21      14.47       -19.05
+       352         1.55       4.97      -0.89       2.35        -3.67
+       353         2.48       8.08      -1.14       3.87        -5.94
+       354         3.94       2.20       0.68       1.38         4.58
+       355         0.47       1.78      -0.57       0.97        -1.29
+       356         0.79       5.95      -1.23       4.48        -3.18
+       357         0.36       3.41      -0.96       2.73        -1.64
+       358         0.03       1.23      -0.63       1.17        -0.21
+       359         0.82       7.76      -1.44       6.20        -3.71
+       360         1.74       6.31      -1.05       3.30        -4.62
+       361        20.93      21.49      -0.07       0.01        -1.08
+       362         3.61       6.03      -0.57       0.97        -3.86
+       363        14.77      15.26      -0.07       0.01        -1.59
+       364        11.48      27.15      -1.74       9.04       -19.78
+       365        30.03      25.36       0.54       0.85         9.23
+       366       136.84     175.23      -1.68       8.41       -68.36
+       367       161.72     184.86      -0.99       2.90       -43.33
+       368       365.97     698.07      -5.86      99.91      -484.16
+       369        53.13      85.72      -2.04      12.13       -43.38
+       370        30.94      80.07      -3.18      30.15       -58.68
+       371       222.43     553.29      -5.85      99.93      -397.78
+       372       294.32     583.72      -5.85      99.99      -406.79
+       373      2400.80    2204.18       2.52      16.82       116.79
+       374        37.16      13.38       3.77      41.80        84.58
+       375         7.57      10.80      -0.57       0.95        -4.76
+       376         8.97      34.57      -2.52      18.73       -21.36
+       377        14.10      10.27       0.69       1.40        10.35
+       378        13.74       9.22       0.86       2.22        10.61
+       379         4.07       7.44      -0.72       1.53        -4.90
+       380         7.33      23.82      -1.96      11.41       -17.12
+       381         0.55       4.35      -1.05       3.31        -2.28
+       382         0.93       7.07      -1.34       5.33        -3.81
+       383         4.76      46.33      -3.54      37.24       -20.59
+       384        67.01      37.40       2.81      23.19        86.47
+       385        63.85     119.75      -2.97      26.08       -78.37
+       386         3.58      21.87      -2.27      15.30       -13.13
+       387        10.31      35.55      -2.45      17.92       -25.04
+       388        21.05       6.45       3.33      32.91        52.48
+       389         5.73       5.21       0.13       0.05         1.18
+       390         6.30      16.68      -1.47       6.46       -12.31
+       391         0.35       3.05      -0.90       2.40        -1.52
+       392         1.59       4.95      -0.88       2.28        -3.72
+       393         1.60       4.45      -0.78       1.82        -3.31
+       394         5.27       3.59       0.51       0.79         4.29
+       395        19.24      11.49       1.32       4.14        28.92
+       396         1.04       2.10      -0.42       0.54        -1.52
+       397         4.39      22.35      -2.20      14.42       -13.73
+       398         4.37      18.04      -1.87      10.04       -10.02
+       399        16.53      57.77      -3.15      29.39       -39.34
+       400         1.56      10.55      -1.60       7.66        -5.89
+       401         1.21      17.15      -2.23      14.82        -6.36
+       402        41.33       9.03       5.79      99.80       131.49
+       403         3.19       7.29      -0.88       2.27        -4.58
+       404         6.57      23.34      -2.01      12.06       -16.59
+       405         0.35       4.26      -1.10       3.59        -1.77
+       406        18.83       6.93       2.62      20.40        36.27
+       407         2.40       6.22      -0.89       2.33        -4.16
+       408         3.64       5.02      -0.36       0.35        -1.71
+       409         1.54      16.09      -2.10      13.16        -7.09
+       410         0.53       2.94      -0.81       1.97        -1.84
+       411         0.27       4.78      -1.20       4.26        -1.56
+       412        20.99      31.28      -1.07       3.39       -16.53
+       413         6.33      25.25      -2.18      14.18       -17.55
+       414        25.44      80.85      -3.57      37.91       -56.24
+       415        29.27      14.77       2.19      14.12        43.74
+       416         7.60      24.01      -1.94      11.21       -17.75
+       417         2.96       2.92       0.01      -0.18         1.55
+       418         0.40       2.36      -0.74       1.63        -1.42
+       419        10.08       7.54       0.54       0.85         6.08
+       420         0.72       2.24      -0.59       1.03        -1.69
+       421         3.64       2.01       0.66       1.31         4.45
+       422        11.03       1.62       4.27      54.43        43.00
+       423         0.39       1.54      -0.54       0.86        -1.08
+       424        10.56      10.11       0.08       0.02         1.12
+       425         5.92       8.16      -0.45       0.61        -3.72
+       426         9.24      26.13      -1.92      10.92       -18.93
+       427         0.87       4.77      -1.03       3.18        -3.01
+       428        13.61       2.05       4.68      64.97        54.82
+       429         0.09       1.66      -0.71       1.44        -0.38
+       430         0.99       5.32      -1.09       3.52        -3.26
+       431         6.05       1.71       1.93      11.07        15.43
+       432         0.36       1.41      -0.52       0.79        -0.99
+       433         4.48       1.14       1.81       9.74        12.25
+       434         1.15       3.67      -0.76       1.72        -2.61
+       435         1.92       7.12      -1.13       3.77        -4.63
+       436         6.60       5.75       0.21       0.13         1.66
+       437        16.73      18.50      -0.24       0.17        -3.37
+       438         0.19       3.54      -1.03       3.17        -1.12
+       439         1.31       6.18      -1.13       3.83        -4.14
+       440         1.71       2.09      -0.15       0.07        -0.63
+       441         5.56       1.96       1.49       6.63        11.92
+       442        36.10      13.52       3.56      37.74        71.36
+       443        31.93      14.26       2.71      21.89        50.74
+       444         9.48      53.85      -3.51      36.55       -33.36
+       445        19.91       6.61       3.00      26.24        50.06
+       446        14.51       6.18       1.94      10.89        29.38
+       447        14.87      42.68      -2.47      17.61       -25.87
+       448         7.87      45.03      -3.21      30.49       -25.13
+       449        37.04     170.03      -5.81      99.44      -103.77
+       450        17.17       7.94       1.90      10.68        25.20
+       451         3.22       6.41      -0.73       1.58        -4.61
+       452         3.75      20.53      -2.15      13.71       -12.23
+       453         1.00       3.75      -0.82       2.01        -2.69
+       454         0.26       6.10      -1.37       5.59        -1.61
+       455         1.99       5.47      -0.86       2.22        -4.18
+       456         5.33       4.42       0.25       0.18         1.74
+       457         0.77      14.15      -2.06      12.65        -4.50
+       458         1.11       2.58      -0.53       0.84        -1.88
+       459         2.14       4.20      -0.58       1.01        -2.78
+       460         6.95      27.52      -2.27      15.38       -19.02
+       461         5.93      22.21      -2.00      11.92       -14.96
+       462        32.75      71.12      -2.64      20.70       -49.80
+       463         3.83      12.99      -1.47       6.46        -9.41
+       464         1.56      21.12      -2.47      18.12        -7.99
+       465         1.98       3.83      -0.55       0.89        -2.73
+       466         1.69       3.09      -0.46       0.64        -2.09
+       467         3.12       9.91      -1.25       4.64        -6.96
+       468         1.89       2.94      -0.35       0.37        -1.61
+       469         3.38       2.64       0.26       0.21         1.68
+       470        23.59       2.13       5.79      99.97       115.20
+       471         6.22       6.83      -0.14      -0.01         0.12
+       472         1.71       2.03      -0.13       0.05        -0.41
+       473         2.00      13.28      -1.79       9.50        -6.77
+       474         4.14      10.72      -1.16       3.21        -4.22
+       475         8.95      34.31      -2.51      18.36       -20.38
+       476         0.72       6.27      -1.28       4.88        -2.86
+       477         0.30      10.19      -1.79       9.58        -1.98
+       478        16.07       5.36       2.68      21.38        36.03
+       479         0.89       4.33      -0.96       2.72        -2.57
+       480         1.89      13.86      -1.86      10.33        -7.30
+       481         0.17       4.12      -1.13       3.78        -1.06
+       482         5.03       3.70       0.40       0.47         3.70
+       483        22.15       2.98       5.79      99.94        90.99
+       484         2.59       9.55      -1.31       5.08        -6.63
+       485         1.45       1.75      -0.13       0.05        -0.63
+       486         1.23       2.84      -0.55       0.91        -2.03
+       487         1.68      18.58      -2.27      15.37        -8.13
+       488         6.67      15.00      -1.25       4.62       -10.70
+       489        56.54      48.02       0.71       1.49        20.60
+       490         8.90       8.77       0.03     -19.05        24.41
+       491         1.11      14.26      -2.02      12.13        -5.59
+       492         1.75       1.73       0.01      -0.04         0.54
+       493         0.25       1.40      -0.56       0.94        -0.87
+       494        16.44       4.48       3.27      31.92        42.35
+       495         0.04       1.19      -0.61       1.11        -0.29
+       496         7.03       0.96       3.58      38.20        28.44
+       497         1.16       3.09      -0.63       1.20        -2.25
+       498         0.23       0.92      -0.41       0.51        -0.62
+       499         4.86       4.85       0.00      -0.01        -0.32
+       500        39.50      15.52       3.53      37.07        73.40
+       501         1.69       2.83      -0.39       0.46        -1.87
+       502         0.28       4.61      -1.17       4.07        -1.56
+       503         0.94       1.22      -0.15      -0.26         0.59
+       504         0.08       0.98      -0.53      -0.10         0.01
+       505         0.35       3.17      -0.92       2.38        -1.12
+       506         0.35       0.84      -0.31       0.29        -0.64
+       507        11.48       0.68       5.79      99.99        64.36
+       508         3.59       2.18       0.55       0.92         3.65
+       509         0.69       4.23      -1.00       2.95        -2.40
+       510         1.22       3.42      -0.69       1.42        -2.60
+       511        15.73      11.02       0.82       2.01        10.72
+       512         0.57       2.14      -0.62       1.15        -1.55
+       513         0.94       1.60      -0.30       0.25        -0.72
+       514         3.48       1.49       0.94       2.53         7.07
+       515        53.33      10.33       5.79      98.68       191.91
+       516        10.79      10.90      -0.02      -0.21         2.77
+       517         3.49      41.15      -3.40      34.33       -15.90
+       518         2.80       5.05      -0.58       1.00        -3.44
+       519        18.62       4.72       3.71      40.95        50.29
+       520        18.03      32.61      -1.48       6.52       -21.42
+       521         6.20      34.41      -2.79      23.12       -21.56
+       522        19.08     129.92      -5.65      94.56       -72.62
+       523        19.29      19.30       0.00       0.00        -0.44
+       524         8.04      15.58      -1.11       3.64       -11.18
+       525        50.57      49.89       0.06      -0.14         6.77
+       526         3.62       9.11      -1.06       3.31        -6.86
+       527         8.76      14.81      -0.91       2.47        -9.24
+       528         9.61      13.30      -0.59       1.03        -6.34
+       529         0.64      10.74      -1.78       9.49        -3.63
+       530         4.81      34.38      -2.92      25.44       -19.03
+       531         3.94       6.28      -0.54       0.85        -3.14
+       532        11.28      10.21       0.19       0.11         1.83
+       533        35.77      66.87      -2.21      14.39       -41.54
+       534         5.87      53.97      -3.80      42.85       -25.37
+       535       187.20     172.82       0.64       1.19        32.42
+       536        20.14      31.57      -1.18       4.13       -18.46
+       537        47.51      51.31      -0.31       0.28        -7.25
+       538         2.60       9.31      -1.27       4.84        -6.56
+       539         0.72       7.52      -1.44       6.15        -3.37
+       540        15.09      24.07      -1.06       3.35       -14.37
+       541         8.61       4.40       1.16       4.04        11.41
+       542         4.97       6.42      -0.33       0.32        -2.26
+       543         5.27       5.18       0.02      -0.02         0.81
+       544         8.56      16.59      -1.14       3.89       -11.21
+       545         3.68       3.03       0.22       0.14         1.45
+       546         0.58       4.92      -1.13       3.83        -2.48
+       547        25.88      32.26      -0.65       1.24       -10.09
+       548        27.34      26.04       0.15      -0.78        12.28
+       549       107.61      83.37       1.54       7.03        52.05
+       550        10.68      15.23      -0.67       1.35        -8.20
+       551        30.62      24.75       0.68       1.37        11.41
+       552        26.13      13.03       2.10      12.93        41.13
+       553         1.75      10.52      -1.57       7.22        -5.47
+       554         4.19      33.69      -2.95      25.79       -16.69
+       555         0.15       6.15      -1.40       5.86        -1.09
+       556         4.58      10.00      -0.99       2.92        -6.67
+       557         2.43       8.98      -1.27       4.75        -5.82
+       558        11.80       7.25       0.98       2.78        13.50
+       559        15.50      23.21      -0.93       2.55       -11.55
+       560         0.47       4.24      -1.06       3.35        -2.09
+       561         1.46       6.89      -1.20       4.28        -4.59
+       562        15.49      45.15      -2.56      19.44       -31.59
+       563        48.02      36.44       1.11       3.68        26.43
+       564       363.51     116.68       5.80      99.63       223.31
+       565        13.03      21.31      -1.04       3.22       -12.46
+       566        48.28      34.64       1.34       5.06        39.70
+       567         0.04       4.21      -1.18       4.12        -0.38
+       568         0.46       3.40      -0.92       2.54        -1.88
+       569         4.25      10.89      -1.17       4.05        -8.31
+       570         0.77       2.90      -0.73       1.56        -1.86
+       571         3.48       2.34       0.43       0.55         2.92
+       572        18.01       7.50       2.22      14.72        31.40
+       573         0.30       2.23      -0.75       1.67        -1.21
+       574         0.52      14.59      -2.14      13.58        -3.42
+       575        19.09      11.78       1.24       4.53        17.46
+       576        54.27      37.71       1.56       7.27        40.42
+       577         9.52       6.89       0.58       1.00         5.65
+       578         5.26      11.20      -1.03       3.14        -8.14
+       579         6.79       2.41       1.64       5.40        22.31
+       580         4.50       7.78      -0.68       1.38        -5.26
+       581         3.08       1.55       0.71       1.50         3.99
+       582         0.13       2.87      -0.93       2.60        -0.84
+       583         0.15       5.35      -1.30       5.06        -1.08
+       584         0.49       1.94      -0.60       1.08        -1.39
+       585         5.43      10.35      -0.89       2.26        -5.64
+       586        30.75       8.37       4.48      59.77        78.02
+       587        70.74      27.25       4.83      69.38       133.09
+       588         1.91       5.69      -0.92       2.51        -4.30
+       589         8.78      11.10      -0.40       0.48        -4.45
+       590        27.51       9.19       3.50      36.31        64.70
+       591        12.06       8.59       0.69       1.35         9.78
+       592       190.47      59.34       5.80      99.32       222.73
+       593       151.09      62.60       5.80      99.77       211.68
+       594        74.64     236.40      -5.82      99.91      -166.85
+       595        20.58      29.03      -0.91       2.46       -13.98
+       596        33.76      27.12       0.74       1.62        14.32
+       597       198.86     187.37       0.49       0.69        20.42
+       598        86.68     197.68      -4.59      62.26      -147.61
+       599       357.92     746.45      -5.86      99.61      -549.66
+       600         1.17       7.23      -1.31       5.08        -4.35
+       601         1.11       5.84      -1.13       3.82        -3.75
+       602         6.62      18.69      -1.62       6.12        -7.14
+       603         0.48       3.41      -0.92       2.52        -1.88
+       604         3.71       5.55      -0.45       0.61        -2.76
+       605         2.06       4.98      -0.76       1.71        -3.80
+       606         0.56       4.02      -1.00       2.98        -2.24
+       607         0.96      12.88      -1.92      11.02        -5.04
+       608         9.58       2.35       2.73      22.21        27.46
+       609         2.32       3.82      -0.44       0.59        -2.42
+       610         5.39      25.05      -2.28      15.39       -15.68
+       611         4.74      20.22      -1.99      11.83       -13.34
+       612       109.22      64.74       3.21      30.53       111.09
+       613        16.66      11.83       0.81       1.97        11.81
+       614        87.64      19.22       5.79      99.94       195.48
+       615         0.43       9.02      -1.66       8.18        -2.62
+       616         0.54       2.68      -0.76       1.70        -1.77
+       617         0.61       2.40      -0.67       1.33        -1.72
+       618         0.23       1.94      -0.71       1.50        -0.99
+       619         4.86       6.21      -0.31       0.29        -2.74
+       620         0.15       1.14      -0.53       0.83        -0.49
+       621         0.80       1.85      -0.45       0.59        -1.40
+       622        12.08      12.09       0.00       0.00        -0.46
+       623         3.78       9.75      -1.11       3.54        -5.86
+       624        46.39      31.23       1.57       7.33        34.58
+       625        10.28       5.71       1.11       3.67        12.13
+       626        28.49       9.27       3.66      39.79        61.72
+       627         0.66       4.88      -1.11       3.65        -2.69
+       628         0.80      12.62      -1.93      11.06        -4.44
+       629         0.04       2.31      -0.86       2.22        -0.34
+       630        13.70       2.72       3.86      44.41        45.73
+       631         3.14       8.70      -1.09       3.54        -6.35
+       632         2.85       1.59       0.58       1.01         3.33
+       633         2.55       2.58      -0.01       0.00        -0.25
+       634         0.71      16.91      -2.28      15.52        -4.42
+       635         6.12      13.65      -1.18       4.14        -9.09
+       636        95.72      43.71       4.56      61.16       166.65
+       637        23.70       7.99       3.22      30.57        57.50
+       638        14.67      12.98       0.27       0.16         5.49
+       639         0.09       1.58      -0.69       1.40        -0.49
+       640         0.89       2.81      -0.66       1.10        -1.17
+       641         1.94       0.83       0.70       1.47         3.25
+       642         0.08       5.47      -1.33       5.30        -0.70
+       643         2.41       4.41      -0.55       0.91        -3.08
+       644        70.66      14.13       5.79      99.95       196.36
+       645        27.54       2.58       5.79     100.00       130.28
+       646         6.89       4.19       0.76       1.73         6.26
+       647         0.70       1.14      -0.24       0.17        -0.74
+       648         0.82       0.93      -0.06      -0.31         0.80
+       649         0.50       3.08      -0.85       2.16        -1.85
+       650         0.39       0.76      -0.25       0.18        -0.53
+       651         4.30       1.75       1.12       3.72         7.37
+       652         1.75       0.64       0.81       1.96         3.47
+       653         3.48       2.11       0.54       0.88         3.40
+       654         0.78       1.15      -0.20       0.12        -0.67
+       655         0.68       4.02      -0.97       2.78        -2.30
+       656         3.29       3.27       0.01       0.00        -0.18
+       657         3.01      11.12      -1.41       5.90        -8.06
+       658         5.99       3.09       0.96       2.72         7.91
+       659        22.70       7.79       3.10      28.56        47.30
+       660        11.47      13.71      -0.35       0.37        -4.11
+       661        26.59      12.81       2.23      14.83        39.98
+       662       222.71      88.49       5.80      99.99       196.51
+       663       351.29      93.35       5.80      99.73       219.35
+       664       177.23     352.52      -5.44      87.14      -247.58
+       665        38.98      43.29      -0.38       0.42        -9.55
+       666         4.96      40.43      -3.23      31.12       -20.96
+       667       218.56     279.40      -2.12      13.25      -108.54
+       668       328.32     294.77       1.14       3.76        79.85
+       669       701.81    1113.09      -5.90      99.78      -672.52
+       670        29.61       8.66       4.12      50.66        72.96
+       671         3.76       6.99      -0.71       1.47        -4.01
+       672         3.50      22.39      -2.31      15.80       -11.56
+       673         5.32       4.09       0.35       0.37         3.00
+       674        13.46       6.65       1.53       6.93        20.37
+       675         0.51       5.97      -1.29       4.99        -2.55
+       676         2.88       4.82      -0.51       0.57        -1.41
+       677         2.64      15.43      -1.89      10.56        -8.67
+       678         1.71       2.82      -0.38       0.44        -1.71
+       679         4.61       4.58       0.01       0.00        -0.09
+       680        13.65      30.01      -1.73       8.92       -21.73
+       681         9.79      24.22      -1.70       8.57       -16.75
+       682        71.13      77.57      -0.42       0.52       -10.33
+       683       131.49      14.17       5.79      99.93       194.05
+       684       146.91      23.03       5.80      99.95       194.71
+       685         3.42       4.18      -0.22       0.14        -1.28
+       686         5.19      10.80      -0.99       2.91        -7.21
+       687         0.49       3.21      -0.88       2.30        -1.83
+       688         0.36       2.88      -0.86       2.20        -1.53
+       689         2.21       2.33      -0.04      -0.35         1.55
+       690         2.97       7.44      -0.95       2.69        -5.53
+       691         3.99       1.36       1.31       5.10         8.33
+       692         4.29       2.21       0.81       1.95         5.34
+       693         2.27      14.48      -1.86      10.30        -8.47
+       694         1.19      11.69      -1.78       9.38        -4.95
+       695        13.84      37.42      -2.23      14.85       -27.27
+       696        13.20       6.84       1.41       5.92        16.56
+       697        52.49      11.11       5.79      99.99       161.86
+       698         4.47       5.85      -0.33       0.32        -2.53
+       699         0.83      15.12      -2.13      13.51        -4.78
+       700         2.97       4.49      -0.41       0.51        -2.57
+       701         0.94       4.03      -0.89       2.35        -2.46
+       702         2.85       3.25      -0.13      -0.64         2.01
+       703         0.51      10.42      -1.78       9.42        -2.95
+       704         4.98       3.09       0.62       1.15         5.21
+       705        23.03      20.26       0.36       0.37         5.13
+       706        14.98      16.36      -0.20       0.11        -3.20
+       707       129.55      52.37       5.80      99.85       208.78
+       708        21.17       9.57       2.17      14.08        33.61
+       709        48.43      15.55       4.83      69.52       108.51
+       710         1.38       1.89      -0.21       0.11        -0.51
+       711         2.15       4.89      -0.72       1.53        -3.60
+       712         0.10       1.05      -0.53       0.82        -0.36
+       713         0.20       3.37      -1.00       2.97        -1.05
+       714         0.88       6.55      -1.28       4.90        -3.57
+       715         2.49       5.29      -0.71       1.48        -3.89
+       716        24.41      16.92       1.05       3.31        18.35
+       717        26.14       3.09       5.79      99.96       109.68
+       718         7.42       5.03       0.62       1.13         5.20
+       719         6.03       1.44       2.21      14.55        16.79
+       720         0.06       4.20      -1.17       4.07        -0.53
+       721         0.26       1.44      -0.57       0.96        -0.91
+       722        10.02       4.09       1.70       8.60        17.11
+       723         6.30       0.99       3.09      27.84        27.27
+       724         0.18       0.81      -0.40       0.42        -0.34
+       725         0.92       2.85      -0.66       1.25        -1.63
+       726         0.38       0.95      -0.34       0.33        -0.56
+       727         6.24       2.65       1.28       4.67        12.82
+       728         3.55       5.24      -0.43       0.52        -2.12
+       729         1.84       4.31      -0.69       1.41        -3.20
+       730        29.87      16.04       2.00      11.93        37.59
+       731         2.08       6.57      -1.01       3.06        -4.90
+       732        18.79      20.14      -0.17       0.09        -3.18
+       733        29.30      46.99      -1.50       6.65       -28.80
+       734        23.19      43.90      -1.81       9.77       -28.88
+       735       164.71     303.33      -4.63      63.35      -201.38
+       736       227.68     320.01      -3.01      26.50      -166.03
+       737       459.29    1208.40      -5.91      99.78      -908.80
+       738       136.77     148.38      -0.55       0.89       -25.57
+       739        63.22     138.60      -3.72      41.00       -99.88
+       740       552.46     957.77      -5.89      99.93      -595.39
+       741       771.87    1010.44      -4.42      56.09      -443.08
+       742      6685.75    3815.56       6.19      95.41         0.00
+       743        17.92       1.49       5.80      81.20        53.95
+       744         5.60       1.02       2.62      12.52         6.38
+       745         2.30       5.15      -0.73       1.44        -2.57
+       746         2.98       0.72       1.55       4.05         2.66
+       747         1.93       0.49       1.18       4.08         4.39
+       748         1.38       2.48      -0.41       0.46        -1.26
+       749         1.30       1.00       0.17       0.07         0.35
+       750         3.35       3.48      -0.04      -0.34        -2.39
+       751         3.91       0.32       3.65      22.32         5.11
+       752         1.99       0.22       2.16       5.74         1.60
+       753         1.50       1.12       0.21      -0.25        -0.63
+       754         0.12       0.16      -0.05      -0.01         0.04
+       755         0.50       0.80      -0.19       0.00         0.01
+       756         0.42       0.61      -0.14      -1.02         0.91
+       757         1.28       1.92      -0.27      -0.62         0.99
+       758         0.86       0.88      -0.01      -0.11         0.56
+       759         2.82       0.61       1.65       3.33         1.79
+       760         0.17       3.06      -0.96       0.82        -0.10
+       761         2.02       0.43       1.41       3.97         2.43
+       762         1.09       0.29       0.85       2.12         3.35
+       763         0.58       1.47      -0.43      -0.32         0.26
+       764         0.05       2.06      -0.81       0.07         0.00
+       765         0.07       0.67      -0.42      -0.42         0.07
+       766         3.37       1.47       0.91      -1.54        -1.42
+       767         1.11       2.14      -0.41       0.50        -1.46
+       768         2.69       1.48       0.58      -2.23        -2.41
+       769         9.86       7.43       0.52       0.33         1.32
+       770         2.35       1.03       0.75      -1.95        -1.66
+       771         1.61       0.71       0.61       0.54         0.70
+       772         1.46       3.58      -0.65      -0.28         0.26
+       773         0.53       1.45      -0.44       0.23        -0.23
+       774         7.58       5.02       0.67       1.03         3.37
+       775         1.32       1.62      -0.14       0.04        -0.29
+       776         0.19       0.33      -0.14      -0.84        -0.94
+       777         0.62       2.67      -0.73      -4.11         1.17
+       778         7.66       8.42      -0.15      -0.24         1.63
+       779         1.14       2.78      -0.57       0.06        -0.06
+       780         0.50       0.27       0.26      -1.23        -0.91
+       781         0.69       1.34      -0.33      -0.45         0.48
+       782         0.17       0.61      -0.33      -0.33         0.15
+       783         3.66       3.98      -0.09      -4.23         6.95
+       784         4.66      12.55      -1.31       2.60        -2.72
+       785         0.74       0.96      -0.13       0.05        -0.27
+       786         0.15       0.66      -0.36       0.11        -0.06
+       787         5.88       3.33       0.81      -0.07        -0.12
+       788         3.17       0.46       2.31     -25.23        -4.93
+       789         1.75       1.61       0.06      -0.10        -0.61
+       790         0.18       0.65      -0.34       0.19        -0.78
+       791         1.95       2.25      -0.12      -0.03        -1.30
+       792         0.21       0.14       0.10      -0.19        -0.26
+       793         4.18      13.63      -1.51       4.29        -3.86
+       794         9.31      43.03      -3.16       6.27        -3.12
+       795         3.47       0.92       1.54      -0.06        -0.03
+       796         1.82       1.54       0.13      -5.48        -5.13
+       797         0.40       2.16      -0.70       0.96        -0.51
+       798         0.23       0.70      -0.32       0.28        -0.35
+       799         1.14       0.14       1.52       4.20         1.50
+       800         0.71       1.05      -0.19       0.01        -0.02
+       801        16.54       3.32       4.22     -47.37       -30.02
+       802         1.04       1.90      -0.36       0.13        -2.28
+       803         1.52       0.18       1.82       7.27         2.74
+       804         4.23       0.92       2.01     -48.97       -10.70
+       805         0.87       0.37       0.48      -0.97        -0.75
+       806         0.55       1.28      -0.38       0.03        -0.03
+       807         0.20       0.12       0.13       0.05         0.25
+       808         1.60       0.09       3.00     -31.92        -2.33
+       809        13.56       0.80       5.80       0.00         6.85
+       810         0.34       2.54      -0.80       1.65        -0.78
+       811         0.03       1.33      -0.65       0.20        -0.01
+       812         0.10       0.92      -0.50       0.53        -0.18
+       813         4.54       4.62      -0.02      -0.20        -2.08
+       814         0.52       0.64      -0.09      -0.09        -0.70
+       815         0.91       0.44       0.41      -0.84        -0.78
+       816         0.49       2.23      -0.68      -0.28         0.12
+       817         3.70       0.90       1.71     -12.02        -4.42
+       818         0.61       0.62      -0.01      -0.10        -0.51
+       819         7.51       3.12       1.45       5.90        10.31
+       820         0.57       1.01      -0.25      -0.05         0.08
+       821        34.15       4.61       5.83       0.00        16.54
+       822         3.27      14.57      -1.75       5.66        -3.62
+       823         0.07       0.50      -0.35       0.27        -0.12
+       824         0.97       1.73      -0.33      -0.78         0.87
+       825         0.19       0.83      -0.41      -0.37         0.15
+       826        13.41       1.17       5.80      29.84        12.91
+       827        19.00       6.88       2.70      12.62        13.31
+       828        16.40      21.73      -0.68       1.28       -10.56
+       829         2.49       0.60       1.42       1.49         0.84
+       830         0.09       0.41      -0.29       0.22        -0.16
+       831         1.87       2.07      -0.08      -1.53         2.92
+       832         0.44       0.29       0.16      -0.82        -0.80
+       833         0.42       1.00      -0.34      -0.01         0.01
+       834         0.16       0.40      -0.22       0.12        -0.44
+       835         0.94       0.28       0.73      -2.95        -1.28
+       836         0.99       1.40      -0.20      -1.18         1.48
+       837         0.08       0.09      -0.03      -0.93        -0.43
+       838         3.58       0.10       5.79      48.78         5.59
+       839         0.52       0.64      -0.09      -0.02         0.08
+       840         3.99      23.59      -2.41      11.90        -6.16
+       841        72.95      74.48      -0.12      -6.59        40.77
+       842         7.36       7.19       0.05       0.00        -0.01
+       843         8.46       8.63      -0.05       0.00         0.01
+       844         2.85       1.00       1.07       1.71        10.25
+       845         2.35       2.59      -0.09      -0.60        -2.84
+       846         0.38       0.47      -0.08       0.02        -0.15
+       847         0.32       0.77      -0.30      -0.23         0.19
+       848         0.06       0.69      -0.44      -0.25         0.04
+       849         0.78       0.56       0.18      -0.12         1.35
+       850         0.51       1.78      -0.55       0.45        -0.34
+       851         0.09       0.33      -0.24       0.10        -0.07
+       852         0.45       3.47      -0.94       1.62        -0.59
+       853        12.69       2.80       3.44     -47.94       -15.69
+       854         8.16       8.96      -0.16      -0.13         1.05
+       855         0.56       1.64      -0.49       0.38        -0.36
+       856         1.44       2.66      -0.43      -0.35         0.47
+       857         0.37       0.48      -0.09      -0.36         0.53
+       858         2.61       0.39       2.06       5.50         2.05
+       859         1.03       0.23       0.97      -8.59        -2.18
+       860         2.50       0.27       2.49      17.07         7.43
+       861        10.57       0.86       5.80      36.71         9.44
+       862         3.01       1.67       0.60      -7.83        -5.84
+       863         1.77       1.35       0.21      -0.31        -0.78
+       864         5.27       4.32       0.27       0.18         1.32
+       865         0.20       0.79      -0.38      -0.03         0.01
+       866         6.49       1.28       2.67      11.60         6.14
+       867         0.89       0.55       0.27      -2.15        -1.78
+       868         1.12       1.75      -0.28      -0.03        -2.07
+       869         8.45       0.38       5.80      58.22        20.25
+       870         0.64       1.20      -0.30       0.21        -0.45
+       871         0.16       0.22      -0.08       0.02        -0.12
+       872         3.36       2.34       0.39      -5.74        -6.10
+       873         3.94       1.89       0.87      -0.62        -0.72
+       874        12.55       6.05       1.55       3.14         4.59
+       875         0.44       1.10      -0.37       0.01        -0.01
+       876         0.22       1.80      -0.68       0.83        -0.29
+       877         0.43       0.15       0.41       0.20         0.18
+       878         0.15       0.39      -0.22       0.14        -0.30
+       879         4.16       0.61       2.63      -2.17        -0.62
+       880         1.62       1.95      -0.14      -0.25         0.79
+       881         0.69       0.15       0.79       1.71         1.40
+       882         0.30       0.40      -0.10      -0.06         0.13
+       883         0.10       0.54      -0.34       0.34        -0.28
+       884         3.14       1.41       0.84       1.14         1.57
+       885         0.59       0.44       0.14      -0.41         1.38
+       886         6.31       3.02       1.10       2.91        13.43
+       887        12.89       3.19       3.16      26.37        23.35
+       888         1.92      12.03      -1.72       3.67        -1.46
+       889        11.54       1.48       4.80       7.68         2.10
+       890         3.62       1.38       1.10      -0.51        -0.44
+       891        12.11       9.54       0.49      -3.01        -7.45
+       892         6.94      10.06      -0.58       0.96        -5.69
+       893        23.17      38.00      -1.48       0.95        -1.94
+       894         0.13       0.62      -0.36      -0.56         0.17
+       895         0.13       0.29      -0.17       0.08        -0.25
+       896         1.59       0.48       0.93      -0.18        -0.11
+       897         0.31       1.11      -0.44       0.48        -1.12
+       898         0.40       0.20       0.25      -0.03        -0.04
+       899         0.38       0.33       0.05      -0.09        -0.27
+       900         0.42       2.16      -0.69       1.25        -0.87
+       901         5.01       1.74       1.44      -7.94        -4.68
+       902         8.13       5.57       0.63      -0.57        -1.33
+       903         0.68       1.02      -0.19      -0.67         0.85
+       904         3.25       1.65       0.72       1.54         4.26
+       905         0.09       0.24      -0.18       0.09        -0.18
+       906         0.80       0.17       0.90       2.07         1.51
+       907         0.22       0.53      -0.25       0.01        -0.01
+       908         9.67       0.84       5.59      -7.03        -7.89
+       909         1.43       2.69      -0.45       0.35        -0.66
+       910         0.16       0.80      -0.42      -0.41         0.13
+       911         0.13       0.42      -0.26      -0.60         0.24
+       912         0.75       0.34       0.41      -5.66        -2.28
+       913         0.19       1.09      -0.50       0.74        -0.71
+       914         1.13       0.29       0.90      -5.27        -1.81
+       915         4.31       0.23       4.89      50.62         8.84
+       916         1.17       0.75       0.28      -2.85        -2.43
+       917         0.04       0.22      -0.22       0.10        -0.05
+       918         0.43       1.17      -0.40       0.22        -0.23
+       919        27.07       3.76       5.83      51.13        38.69
+       920         4.08       0.69       2.37      11.62         5.80
+       921         0.02       1.12      -0.60      -0.25         0.01
+       922         1.24       0.14       1.74      -7.16        -1.22
+       923         0.38       1.22      -0.44      -0.90         0.44
+       924         7.52       0.08       5.79       0.00        11.37
+       925         0.31       0.18       0.18      -0.30        -0.33
+       926         1.34       0.34       0.99      -6.50        -2.20
+       927         1.52       0.92       0.36       0.39         1.45
+       928         0.77       0.54       0.19       0.02         0.05
+       929         1.82       0.76       0.71       0.23         0.24
+       930         5.96       5.23       0.19      -0.23         4.39
+       931         0.81       5.52      -1.17      -3.07         0.73
+       932         5.95      20.83      -1.95      10.16       -11.58
+       933         2.63       2.56       0.03      -0.02        -0.29
+       934         1.00       2.39      -0.52       0.64        -0.93
+       935         7.31      16.51      -1.34       3.82        -5.78
+       936         2.67      17.42      -2.10       4.18        -1.52
+       937        38.13      65.78      -2.20     -13.25        18.44
+       938         4.21       0.79       2.26       9.11         4.72
+       939         3.31       0.54       2.19       0.34         0.12
+       940         3.66       2.72       0.34      -0.35        -0.94
+       941         0.17       0.26      -0.11      -0.19         0.22
+       942         0.56       1.31      -0.39      -0.01         0.01
+       943         5.95       0.53       4.33     -38.53        -5.45
+       944         0.38       0.37       0.01       0.00         0.00
+       945         0.74       1.84      -0.48       0.14        -0.14
+       946         1.67       0.59       0.81      -0.14        -0.11
+       947         0.04       0.45      -0.36       0.09        -0.02
+       948         0.60       2.67      -0.75      -1.03         0.40
+       949        14.82       8.43       1.41      -2.61        -3.87
+       950         1.80       1.69       0.05       0.00        -0.02
+       951         0.34       0.24       0.12      -0.31        -0.42
+       952         0.26       0.82      -0.36       0.12        -0.10
+       953         0.68       0.33       0.36      -0.61        -0.56
+       954         0.46       1.14      -0.38      -0.48         0.35
+       955         1.63       0.07       3.34       2.04         0.19
+       956         0.20       4.62      -1.25       1.04        -0.10
+       957         5.55      14.59      -1.65      -0.88         0.75
+       958         2.47       0.21       2.88      24.70        12.09
+       959         1.23       0.54       0.55      -1.46        -1.14
+       960         5.62       0.72       3.36     -48.87        -8.45
+       961         0.96       1.86      -0.38       0.40        -0.89
+       962         1.43       0.55       0.68      -8.28        -3.45
+       963        10.82       0.18       5.80       0.00        11.34
+       964         0.50       0.14       0.55       0.88         1.50
+       965         0.23       0.08       0.32       0.28         0.34
+       966         2.19       1.26       0.49      -1.91        -2.13
+       967         2.05       0.23       2.21      -1.60        -0.35
+       968         0.31       0.12       0.32      -0.36        -0.25
+       969         0.20       0.13       0.12      -0.02        -0.04
+       970         0.26       0.03       0.73       1.59         1.12
+       971         0.18       0.02       0.65       1.16         0.53
+       972         0.47       0.13       0.52       0.76         0.83
+       973         0.08       0.51      -0.34       0.30        -0.17
+       974         0.88       0.40       0.44       0.24         0.32
+       975         0.35       0.42      -0.06      -0.22        -0.68
+       976         1.62       0.15       2.16       2.51         0.52
+       977         3.84       0.11       5.79      58.54         8.03
+       978         0.24       0.08       0.31       0.25         0.31
+       979         0.11       0.22      -0.13      -0.17        -0.44
+       980         2.33       0.23       2.52      10.43         2.83
+       981        35.32       0.14       5.80       0.00         0.00
+       982         0.35       0.01       1.58       6.54         1.17
+       983         0.28       0.24       0.05      -0.07         0.39
+       984         0.51       0.10       0.77      -2.89        -0.76
+       985         1.40       2.68      -0.46      -0.70         0.80
+       986         1.12       0.80       0.21       0.09         0.36
+       987         0.12       0.08       0.08       0.00        -0.01
+       988         1.37       1.29       0.04      -0.03         0.61
+       989         0.03       0.24      -0.25       0.07        -0.02
+       990         0.48       0.38       0.09      -0.06         0.61
+       991         0.19       0.16       0.04      -0.80        -0.63
+       992         0.84       0.52       0.25      -0.83        -0.98
+       993         0.39       0.70      -0.22      -0.11        -1.06
+       994         1.10       0.57       0.41       0.01         0.01
+       995         6.97       1.81       2.23      13.33        12.69
+       996         6.48       0.54       4.70      -5.55        -0.90
+       997         0.65       0.05       1.66      -0.21        -0.03
+       998         2.16       0.59       1.20       1.83         1.27
+       999         0.15       0.17      -0.04      -0.03        -0.20
+      1000         1.04       0.42       0.56       0.86         1.38
+      1001         6.37       0.56       4.52      55.35        19.83
+      1002         0.04       0.59      -0.41      -1.34         0.10
+      1003         1.39       0.25       1.30       2.79         1.37
+      1004         2.39       1.76       0.28       0.22         1.42
+      1005         0.57       7.01      -1.44       2.51        -0.52
+      1006         5.49       0.29       5.60      -6.75       -11.71
+      1007         0.23       0.09       0.29      -0.43        -0.26
+      1008         2.03       0.39       1.53     -19.50        -4.27
+      1009         0.81       1.01      -0.11      -0.22         0.56
+      1010         0.02       0.30      -0.29      -0.38         0.04
+      1011         0.79       0.02       3.39      -7.52        -0.30
+      1012         0.62       0.48       0.12       0.02         0.08
+      1013         0.58       0.04       1.48     -30.94        -1.87
+      1014         0.54       0.83      -0.18      -1.56         1.25
+      1015         2.50       0.88       1.01       2.34         7.75
+      1016         0.60       3.31      -0.87       0.78        -0.34
+      1017         3.00       2.62       0.13      -0.41        -1.55
+      1018         8.59      10.45      -0.34      -0.18        -7.54
+      1019         0.30       0.11       0.34      -2.39        -0.83
+      1020         1.17       0.35       0.81      -9.49        -2.91
+      1021         0.40       0.10       0.53       0.77         0.72
+      1022         1.71       0.24       1.74     -18.47        -3.17
+      1023         0.11       1.20      -0.58       0.20        -0.04
+      1024         0.79       0.36       0.42       0.14         2.36
+      1025         0.51       0.04       1.44       0.37         0.05
+      1026         0.06       0.18      -0.16       0.00        -0.27
+      1027         0.55       0.58      -0.03       0.00        -0.12
+      1028         1.53       0.17       1.89       7.73         2.72
+      1029         0.54       0.81      -0.18      -0.26         0.40
+      1030         0.17       0.26      -0.11       0.03        -0.11
+      1031         0.95       0.01       4.44      43.05         2.35
+      1032         0.43       0.41       0.01      -0.04        -0.23
+      1033         0.65       2.85      -0.76       0.97        -0.60
+      1034         1.35       3.01      -0.56       0.53        -0.74
+      1035         7.57      11.35      -0.67      -0.32       -12.97
+      1036         1.59       1.39       0.09      -0.14        -0.63
+      1037         0.71       1.30      -0.30       0.23        -1.19
+      1038         0.43       9.00      -1.70       4.30        -0.57
+      1039         4.24       9.49      -1.01       2.25        -3.54
+      1040        20.85      35.84      -1.62     -13.08        16.17
+      1041         1.41       4.35      -0.85      -0.04         0.03
+      1042         0.03       3.62      -1.13      -0.01         0.00
+      1043        11.77      14.62      -0.50       0.00         0.00
+      1044        35.69       7.60       6.24       0.00         0.00
+      1045         6.47      25.18      -2.93       0.05        -0.03
+      1046         0.40       0.11       0.52       0.38         0.27
+      1047         1.07       0.38       0.69      -0.22        -0.17
+      1048         1.42       0.05       3.49     -10.35        -0.68
+      1049         1.12       1.97      -0.49       0.00         0.00
+      1050         0.51       0.36       0.14      -0.02        -0.05
+      1051        18.76       1.16       5.83       0.00       -22.10
+      1052         0.54       0.34       0.19       0.07         0.19
+      1053         0.28       0.15       0.21      -0.13        -0.15
+      1054         4.78       1.25       1.84     -13.12        -5.33
+      1055         2.37       4.00      -0.48      -0.03         0.05
+      1056         0.98       0.73       0.17       0.06         0.30
+      1057         0.12       1.19      -0.57      -0.55         0.09
+      1058         0.15       0.75      -0.40       0.39        -0.25
+      1059         2.16       1.93       0.10       0.00         0.02
+      1060         0.54       0.30       0.25       0.16         0.83
+      1061         0.49       2.70      -0.79      -1.38         0.41
+      1062         3.98       0.80       2.06      -5.04        -1.86
+      1063         6.57       0.87       3.55      15.40         5.07
+      1064         0.27       0.07       0.44       0.53         0.53
+      1065         2.24       0.35       1.84       0.57         0.19
+      1066         1.55       0.33       1.24       3.08         1.91
+      1067         4.76       2.27       0.97       2.70         6.48
+      1068         6.24       2.40       1.46       5.54         8.00
+      1069         0.25       9.05      -1.78       4.61        -0.35
+      1070        21.08       7.18       3.13     -24.88       -15.28
+      1071         6.55       7.57      -0.22      -0.08        -4.30
+      1072         7.79      28.59      -2.71      -4.24         2.29
+      1073         5.83       1.94       1.63       7.83        12.81
+      1074         0.22       1.57      -0.62      -1.27         0.27
+      1075         2.00       5.14      -0.81       0.33        -0.32
+      1076         0.20       1.13      -0.51       0.37        -0.16
+      1077         3.27       2.34       0.35      -2.22        -3.46
+      1078         0.18       1.16      -0.53      -0.24         0.07
+      1079         3.16       0.94       1.34       4.98         5.72
+      1080         3.49       3.09       0.13      -0.13         2.45
+      1081         2.53       0.71       1.25       0.72         0.46
+      1082         4.01       2.36       0.63      -0.36        -0.60
+      1083        10.01       8.06       0.41       0.14         7.97
+      1084         0.04       2.32      -0.87      -0.26         0.01
+      1085         3.52       5.97      -0.59       0.30        -0.59
+      1086         9.12       1.25       4.08     -24.45        -5.79
+      1087         1.57       4.11      -0.73      -0.20         0.17
+      1088         0.51       2.01      -0.62      -2.18         0.76
+      1089         1.62       6.56      -1.13       0.96        -0.56
+      1090         2.46       2.00       0.19      -1.55        -2.92
+      1091        12.94       8.15       0.99     -12.78       -15.18
+      1092         1.59       5.82      -1.03       1.93        -1.51
+      1093        24.19      20.72       0.46      -0.32        -1.84
+      1094         4.04       1.24       1.46       1.89         1.43
+      1095         4.45       1.01       1.99       1.88         0.95
+      1096         6.84       3.44       1.07     -11.37        -9.20
+      1097         0.93       0.61       0.24       0.16         0.63
+      1098         4.65       2.11       1.02      -0.97        -1.02
+      1099         1.70       1.70       0.00      -9.03        -6.71
+      1100         6.30       1.97       1.80      -7.63        -4.30
+      1101         1.31       1.62      -0.14       0.02        -0.12
+      1102         8.27       6.09       0.52       0.72         6.41
+      1103         0.98       8.01      -1.47       3.85        -1.34
+      1104         0.69       0.88      -0.12      -0.04        -0.79
+      1105         0.59       4.16      -1.03      -1.21         0.30
+      1106        26.20       2.95       5.83      19.81        31.70
+      1107         2.00      10.48      -1.56       3.25        -1.59
+      1108         0.31       2.10      -0.72       0.31        -0.10
+      1109         2.06       1.86       0.08      -1.45        -2.97
+      1110        27.06      10.57       3.02     -33.01       -23.00
+      1111         1.07       9.43      -1.61       1.39        -0.35
+      1112        16.05      34.82      -2.02     -12.39        11.22
+      1113         3.99       0.09       5.80      90.37        18.45
+      1114         0.15       0.07       0.17       0.07         0.13
+      1115         0.25       0.84      -0.38       0.14        -0.10
+      1116         0.46       0.15       0.45      -2.44        -0.97
+      1117         0.63       0.19       0.58      -1.45        -0.70
+      1118         0.80       0.16       0.94       1.43         0.75
+      1119         0.85       0.50       0.29       0.09         0.18
+      1120         0.06       0.15      -0.14       0.05        -0.15
+      1121         8.01       0.35       5.81       0.00        -9.52
+      1122         0.60       0.38       0.21      -0.37        -0.51
+      1123        12.51       1.22       5.86      41.11        11.21
+      1124         1.30       0.22       1.33      -1.66        -0.53
+      1125         0.44       0.46      -0.01       0.00         0.06
+      1126         0.56       0.08       0.94       1.62         0.69
+      1127         0.19       0.14       0.07       0.01         0.14
+      1128         0.32       0.16       0.23      -2.17        -0.97
+      1129         0.62       0.55       0.05      -0.05        -0.24
+      1130         0.53       0.10       0.77       0.19         0.08
+      1131         2.14       0.18       2.68      10.55         2.32
+      1132         9.42       0.06       5.80       0.00        25.03
+      1133         0.25       0.53      -0.22       0.14        -0.41
+      1134         0.40       0.05       0.93      -0.66        -0.14
+      1135         0.69       0.29       0.42      -1.37        -0.91
+      1136         0.15       0.24      -0.11       0.00         0.00
+      1137         1.15       0.76       0.26       0.16         1.37
+      1138         0.62       0.23       0.47       0.10         0.09
+      1139         0.19       0.08       0.21      -1.14        -0.50
+      1140         0.26       0.05       0.52       0.72         0.54
+      1141         3.04       0.02       5.79       0.00        -0.02
+      1142         1.38       0.35       1.02       1.35         0.87
+      1143         1.23       0.13       1.77       8.08         3.15
+      1144         4.45       2.61       0.68       0.93         2.21
+      1145         5.43       1.60       1.79       3.48         2.59
+      1146         8.24       4.65       1.02       0.91         1.66
+      1147        16.26       8.27       1.78      -7.22        -8.10
+      1148         4.16       1.96       0.93      -4.55        -3.90
+      1149         1.27       1.25       0.01      -0.24        -1.05
+      1150         0.83       4.36      -1.03       0.44        -0.19
+      1151         0.97       4.20      -0.96       0.13        -0.07
+      1152         3.16      12.65      -1.82      -1.68         0.83
+      1153         0.96       0.03       3.13      21.08         2.22
+      1154         0.19       0.03       0.53      -0.95        -0.22
+      1155         0.06       0.10      -0.08      -0.04         0.05
+      1156         3.48       1.47       1.16       0.85         0.96
+      1157         0.31       0.07       0.51      -0.28        -0.12
+      1158         0.23       0.11       0.21      -0.16        -0.16
+      1159         0.37       0.07       0.69      -0.22        -0.08
+      1160         0.26       0.11       0.26      -0.02        -0.02
+      1161         4.21       0.09       5.84       0.00        -7.43
+      1162         0.56       0.05       1.31       2.63         0.64
+      1163         0.11       0.37      -0.25      -0.03         0.02
+      1164         0.03       0.03       0.00      -0.03        -0.05
+      1165         0.17       0.03       0.52      -0.55        -0.14
+      1166         6.11       0.23       5.89       0.00         2.91
+      1167         0.22       0.09       0.26       0.16         0.23
+      1168         0.15       0.11       0.07       0.01         0.17
+      1169         4.25       1.00       1.92       2.51         1.38
+      1170         2.24       0.83       0.92       0.64         0.60
+      1171         5.00       3.09       0.68       0.24         0.50
+      1172         0.79       1.30      -0.27       0.00         0.00
+      1173         5.37       4.03       0.43      -0.46        -1.30
+      1174         2.69       0.77       1.30      -2.32        -1.26
+      1175         1.50       0.65       0.62      -0.63        -0.58
+      1176         0.15       2.86      -1.00       0.16        -0.02
+      1177         0.43       1.80      -0.62       0.00         0.00
+      1178         0.13       6.23      -1.66      -0.44         0.02
+      1179         0.92       0.30       0.66      -2.94        -1.37
+      1180         4.66       0.07       5.81       0.00         9.07
+      1181         0.07       0.21      -0.17       0.05        -0.06
+      1182         0.41       0.33       0.08      -0.10        -0.25
+      1183         3.55       1.05       1.50       1.87         1.36
+      1184         0.26       0.07       0.49       0.17         0.11
+      1185         0.82       0.21       0.81       0.00         0.00
+      1186         0.91       0.34       0.61       0.00         0.00
+      1187         0.34       0.97      -0.51       0.00         0.00
+      1188         1.15       0.28       1.04      -0.43        -0.21
+      1189         0.21       0.05       0.42      -0.29        -0.12
+      1190         0.52       0.17       0.51       0.16         0.13
+      1191         1.67       0.02       5.83       0.00         1.02
+      1192         4.63       0.22       5.58      -0.03         0.00
+      1193         0.30       0.01       1.43      -3.14        -0.24
+      1194         0.24       0.01       1.73       1.22         0.07
+
+     THE TOTAL PEARSON CHI-SQUARE CONTRIBUTION FROM EMPTY CELLS IS       310.29
+
+
+     UNIVARIATE MODEL FIT INFORMATION
+
+                               Estimated Probabilities
+                                                  Standardized
+     Variable              H1           H0          Residual
+                                                   (z-score)
+     CDHOUSE
+       Category 1        0.079        0.078           0.279
+       Category 2        0.066        0.065           0.064
+       Category 3        0.264        0.264           0.010
+       Category 4        0.137        0.137           0.002
+       Category 5        0.454        0.455          -0.193
+       Univariate Pearson Chi-Square                  0.286
+       Univariate Log-Likelihood Chi-Square           0.285
+     CDASSIST
+       Category 1        0.069        0.069           0.052
+       Category 2        0.047        0.047          -0.008
+       Category 3        0.239        0.239          -0.053
+       Category 4        0.155        0.155           0.147
+       Category 5        0.489        0.489          -0.084
+       Univariate Pearson Chi-Square                  0.080
+       Univariate Log-Likelihood Chi-Square           0.080
+     CDHELP
+       Category 1        0.140        0.140          -0.012
+       Category 2        0.067        0.067          -0.035
+       Category 3        0.094        0.094           0.032
+       Category 4        0.030        0.030          -0.037
+       Category 5        0.669        0.668           0.021
+       Univariate Pearson Chi-Square                  0.011
+       Univariate Log-Likelihood Chi-Square           0.011
+     CDSOCIAL
+       Category 1        0.102        0.102           0.019
+       Category 2        0.064        0.064           0.097
+       Category 3        0.202        0.201           0.188
+       Category 4        0.166        0.166           0.036
+       Category 5        0.466        0.467          -0.237
+       Univariate Pearson Chi-Square                  0.203
+       Univariate Log-Likelihood Chi-Square           0.203
+     CDDISCUS
+       Category 1        0.454        0.455          -0.072
+       Category 2        0.546        0.545           0.072
+       Univariate Pearson Chi-Square                  0.015
+       Univariate Log-Likelihood Chi-Square           0.015
+
+       Overall Univariate Pearson Chi-Square                         0.595
+       Overall Univariate Log-Likelihood Chi-Square                  0.594
+
+
+     BIVARIATE MODEL FIT INFORMATION
+
+                                              Estimated Probabilities
+                                                                 Standardized
+     Variable       Variable              H1           H0          Residual
+                                                                  (z-score)
+     CDHOUSE        CDASSIST
+       Category 1     Category 1        0.036        0.012          22.746
+       Category 1     Category 2        0.009        0.008           0.734
+       Category 1     Category 3        0.018        0.042         -12.461
+       Category 1     Category 4        0.004        0.004           0.275
+       Category 1     Category 5        0.012        0.012           0.016
+       Category 2     Category 1        0.008        0.010          -2.230
+       Category 2     Category 2        0.018        0.007          14.096
+       Category 2     Category 3        0.025        0.034          -5.152
+       Category 2     Category 4        0.007        0.004           5.255
+       Category 2     Category 5        0.008        0.011          -2.833
+       Category 3     Category 1        0.015        0.031          -9.841
+       Category 3     Category 2        0.015        0.022          -4.903
+       Category 3     Category 3        0.132        0.109           7.673
+       Category 3     Category 4        0.048        0.024          16.064
+       Category 3     Category 5        0.054        0.077          -9.129
+       Category 4     Category 1        0.002        0.006          -4.652
+       Category 4     Category 2        0.003        0.004          -2.101
+       Category 4     Category 3        0.025        0.020           3.193
+       Category 4     Category 4        0.049        0.026          15.172
+       Category 4     Category 5        0.059        0.081          -8.658
+       Category 5     Category 1        0.008        0.010          -1.937
+       Category 5     Category 2        0.003        0.007          -4.666
+       Category 5     Category 3        0.039        0.034           3.178
+       Category 5     Category 4        0.048        0.097         -17.408
+       Category 5     Category 5        0.356        0.308          10.962
+       Bivariate Pearson Chi-Square                               6385.923
+       Bivariate Log-Likelihood Chi-Square                        5807.330
+     CDHOUSE        CDHELP
+       Category 1     Category 1        0.033        0.025           5.307
+       Category 1     Category 2        0.010        0.012          -1.782
+       Category 1     Category 3        0.013        0.017          -2.827
+       Category 1     Category 4        0.004        0.005          -2.278
+       Category 1     Category 5        0.019        0.020          -0.192
+       Category 2     Category 1        0.016        0.020          -3.142
+       Category 2     Category 2        0.012        0.010           2.107
+       Category 2     Category 3        0.014        0.014           0.645
+       Category 2     Category 4        0.005        0.004           1.032
+       Category 2     Category 5        0.019        0.018           0.811
+       Category 3     Category 1        0.055        0.064          -3.943
+       Category 3     Category 2        0.029        0.031          -1.227
+       Category 3     Category 3        0.050        0.043           3.506
+       Category 3     Category 4        0.016        0.014           2.018
+       Category 3     Category 5        0.114        0.112           0.736
+       Category 4     Category 1        0.012        0.012           0.128
+       Category 4     Category 2        0.005        0.006          -1.101
+       Category 4     Category 3        0.008        0.008           0.385
+       Category 4     Category 4        0.004        0.003           2.172
+       Category 4     Category 5        0.109        0.109          -0.238
+       Category 5     Category 1        0.024        0.019           4.118
+       Category 5     Category 2        0.012        0.009           2.871
+       Category 5     Category 3        0.009        0.013          -3.995
+       Category 5     Category 4        0.002        0.004          -3.948
+       Category 5     Category 5        0.407        0.410          -0.464
+       Bivariate Pearson Chi-Square                                460.184
+       Bivariate Log-Likelihood Chi-Square                         470.221
+     CDHOUSE        CDSOCIAL
+       Category 1     Category 1        0.035        0.015          16.742
+       Category 1     Category 2        0.009        0.009          -0.318
+       Category 1     Category 3        0.015        0.023          -6.033
+       Category 1     Category 4        0.007        0.011          -4.148
+       Category 1     Category 5        0.014        0.020          -4.353
+       Category 2     Category 1        0.019        0.012           6.301
+       Category 2     Category 2        0.015        0.007           9.434
+       Category 2     Category 3        0.018        0.019          -0.896
+       Category 2     Category 4        0.005        0.009          -4.177
+       Category 2     Category 5        0.008        0.017          -7.457
+       Category 3     Category 1        0.031        0.041          -5.216
+       Category 3     Category 2        0.030        0.025           3.459
+       Category 3     Category 3        0.101        0.068          13.521
+       Category 3     Category 4        0.047        0.040           3.736
+       Category 3     Category 5        0.055        0.090         -12.696
+       Category 4     Category 1        0.006        0.010          -4.016
+       Category 4     Category 2        0.006        0.007          -0.885
+       Category 4     Category 3        0.023        0.024          -0.485
+       Category 4     Category 4        0.046        0.024          15.379
+       Category 4     Category 5        0.056        0.073          -6.907
+       Category 5     Category 1        0.010        0.023          -8.727
+       Category 5     Category 2        0.004        0.016          -9.885
+       Category 5     Category 3        0.046        0.067          -8.874
+       Category 5     Category 4        0.060        0.082          -8.139
+       Category 5     Category 5        0.333        0.267          15.574
+       Bivariate Pearson Chi-Square                               5037.098
+       Bivariate Log-Likelihood Chi-Square                        4885.349
+     CDHOUSE        CDDISCUS
+       Category 1     Category 1        0.052        0.044           3.936
+       Category 1     Category 2        0.027        0.034          -4.058
+       Category 2     Category 1        0.042        0.037           2.888
+       Category 2     Category 2        0.024        0.029          -3.149
+       Category 3     Category 1        0.144        0.137           2.118
+       Category 3     Category 2        0.120        0.127          -2.177
+       Category 4     Category 1        0.058        0.058          -0.011
+       Category 4     Category 2        0.080        0.080           0.011
+       Category 5     Category 1        0.158        0.179          -5.524
+       Category 5     Category 2        0.296        0.276           4.517
+       Bivariate Pearson Chi-Square                                286.720
+       Bivariate Log-Likelihood Chi-Square                         290.868
+     CDASSIST       CDHELP
+       Category 1     Category 1        0.038        0.027           6.971
+       Category 1     Category 2        0.010        0.013          -2.527
+       Category 1     Category 3        0.012        0.018          -5.036
+       Category 1     Category 4        0.004        0.006          -2.910
+       Category 1     Category 5        0.005        0.005           0.988
+       Category 2     Category 1        0.015        0.019          -2.904
+       Category 2     Category 2        0.014        0.009           6.030
+       Category 2     Category 3        0.011        0.013          -1.129
+       Category 2     Category 4        0.004        0.004          -0.492
+       Category 2     Category 5        0.003        0.003          -0.377
+       Category 3     Category 1        0.087        0.094          -2.547
+       Category 3     Category 2        0.042        0.045          -1.401
+       Category 3     Category 3        0.071        0.063           3.326
+       Category 3     Category 4        0.023        0.020           1.752
+       Category 3     Category 5        0.016        0.016          -0.368
+       Category 4     Category 1        0.000        0.000           0.000
+       Category 4     Category 2        0.000        0.000           0.000
+       Category 4     Category 3        0.000        0.000           0.000
+       Category 4     Category 4        0.000        0.000           0.000
+       Category 4     Category 5        0.155        0.155           0.147
+       Category 5     Category 1        0.000        0.000           0.000
+       Category 5     Category 2        0.000        0.000           0.000
+       Category 5     Category 3        0.000        0.000           0.000
+       Category 5     Category 4        0.000        0.000           0.000
+       Category 5     Category 5        0.489        0.489          -0.084
+       Bivariate Pearson Chi-Square                                462.132
+       Bivariate Log-Likelihood Chi-Square                         446.387
+     CDASSIST       CDSOCIAL
+       Category 1     Category 1        0.034        0.016          14.863
+       Category 1     Category 2        0.010        0.010           0.235
+       Category 1     Category 3        0.014        0.023          -6.253
+       Category 1     Category 4        0.004        0.009          -5.029
+       Category 1     Category 5        0.006        0.011          -4.562
+       Category 2     Category 1        0.015        0.011           3.935
+       Category 2     Category 2        0.012        0.007           7.303
+       Category 2     Category 3        0.012        0.016          -3.271
+       Category 2     Category 4        0.003        0.006          -3.910
+       Category 2     Category 5        0.005        0.007          -3.409
+       Category 3     Category 1        0.034        0.056         -10.058
+       Category 3     Category 2        0.028        0.033          -3.398
+       Category 3     Category 3        0.095        0.081           5.045
+       Category 3     Category 4        0.038        0.031           4.538
+       Category 3     Category 5        0.045        0.038           3.895
+       Category 4     Category 1        0.008        0.004           4.981
+       Category 4     Category 2        0.009        0.003           9.953
+       Category 4     Category 3        0.034        0.019          10.939
+       Category 4     Category 4        0.053        0.029          15.144
+       Category 4     Category 5        0.052        0.099         -16.398
+       Category 5     Category 1        0.011        0.014          -2.551
+       Category 5     Category 2        0.005        0.011          -5.446
+       Category 5     Category 3        0.047        0.061          -6.062
+       Category 5     Category 4        0.067        0.091          -8.793
+       Category 5     Category 5        0.359        0.312          10.353
+       Bivariate Pearson Chi-Square                               4443.961
+       Bivariate Log-Likelihood Chi-Square                        4244.562
+     CDASSIST       CDDISCUS
+       Category 1     Category 1        0.049        0.042           3.585
+       Category 1     Category 2        0.020        0.027          -4.413
+       Category 2     Category 1        0.034        0.029           2.842
+       Category 2     Category 2        0.014        0.018          -3.586
+       Category 3     Category 1        0.134        0.147          -3.693
+       Category 3     Category 2        0.105        0.092           4.440
+       Category 4     Category 1        0.079        0.057          10.162
+       Category 4     Category 2        0.076        0.098          -7.720
+       Category 5     Category 1        0.157        0.179          -5.944
+       Category 5     Category 2        0.332        0.310           4.837
+       Bivariate Pearson Chi-Square                                827.017
+       Bivariate Log-Likelihood Chi-Square                         815.984
+     CDHELP         CDSOCIAL
+       Category 1     Category 1        0.039        0.033           3.368
+       Category 1     Category 2        0.014        0.020          -3.982
+       Category 1     Category 3        0.040        0.048          -3.555
+       Category 1     Category 4        0.019        0.018           1.147
+       Category 1     Category 5        0.027        0.021           3.814
+       Category 2     Category 1        0.015        0.016          -1.182
+       Category 2     Category 2        0.013        0.009           3.507
+       Category 2     Category 3        0.023        0.023           0.042
+       Category 2     Category 4        0.009        0.009           0.301
+       Category 2     Category 5        0.008        0.010          -2.318
+       Category 3     Category 1        0.017        0.022          -3.587
+       Category 3     Category 2        0.013        0.013           0.152
+       Category 3     Category 3        0.041        0.032           5.370
+       Category 3     Category 4        0.009        0.012          -3.068
+       Category 3     Category 5        0.014        0.014          -0.766
+       Category 4     Category 1        0.007        0.007          -0.445
+       Category 4     Category 2        0.006        0.004           2.740
+       Category 4     Category 3        0.008        0.010          -1.946
+       Category 4     Category 4        0.006        0.004           3.797
+       Category 4     Category 5        0.003        0.005          -2.741
+       Category 5     Category 1        0.025        0.023           0.788
+       Category 5     Category 2        0.017        0.017           0.309
+       Category 5     Category 3        0.089        0.088           0.268
+       Category 5     Category 4        0.123        0.123          -0.207
+       Category 5     Category 5        0.415        0.416          -0.319
+       Bivariate Pearson Chi-Square                                469.445
+       Bivariate Log-Likelihood Chi-Square                         463.668
+     CDHELP         CDDISCUS
+       Category 1     Category 1        0.092        0.086           2.147
+       Category 1     Category 2        0.048        0.054          -2.694
+       Category 2     Category 1        0.047        0.042           2.609
+       Category 2     Category 2        0.021        0.026          -3.336
+       Category 3     Category 1        0.050        0.058          -3.436
+       Category 3     Category 2        0.044        0.036           4.358
+       Category 4     Category 1        0.017        0.019          -1.581
+       Category 4     Category 2        0.014        0.012           1.938
+       Category 5     Category 1        0.249        0.250          -0.323
+       Category 5     Category 2        0.420        0.418           0.303
+       Bivariate Pearson Chi-Square                                191.214
+       Bivariate Log-Likelihood Chi-Square                         191.071
+     CDSOCIAL       CDDISCUS
+       Category 1     Category 1        0.075        0.058           7.276
+       Category 1     Category 2        0.027        0.044          -8.307
+       Category 2     Category 1        0.045        0.036           5.386
+       Category 2     Category 2        0.019        0.028          -5.924
+       Category 3     Category 1        0.115        0.104           3.757
+       Category 3     Category 2        0.087        0.097          -3.611
+       Category 4     Category 1        0.075        0.072           1.327
+       Category 4     Category 2        0.091        0.094          -1.131
+       Category 5     Category 1        0.144        0.185         -10.898
+       Category 5     Category 2        0.322        0.283           9.129
+       Bivariate Pearson Chi-Square                               1077.962
+       Bivariate Log-Likelihood Chi-Square                        1119.552
+
+       Overall Bivariate Pearson Chi-Square                      19641.656
+       Overall Bivariate Log-Likelihood Chi-Square               18734.991
+
+
+TECHNICAL 11 OUTPUT
+
+     Random Starts Specifications for the k-1 Class Analysis Model
+        Number of initial stage random starts                  20
+        Number of final stage optimizations                     4
+
+
+
+     VUONG-LO-MENDELL-RUBIN LIKELIHOOD RATIO TEST FOR 1 (H0) VERSUS 2 CLASSES
+
+          H0 Loglikelihood Value                      -183326.584
+          2 Times the Loglikelihood Difference          57467.893
+          Difference in the Number of Parameters               18
+          Mean                                          10300.055
+          Standard Deviation                            17317.608
+          P-Value                                          0.0032
+
+     LO-MENDELL-RUBIN ADJUSTED LRT TEST
+
+          Value                                         57161.879
+          P-Value                                          0.0034
+
+
+SAVEDATA INFORMATION
+
+
+  Save file
+    brfss_cogdec_impute_step1_c2_save_04062022.txt
+
+  Order of variables
+
+    CDHOUSE
+    CDASSIST
+    CDHELP
+    CDSOCIAL
+    CDDISCUS
+    SEX
+    AGE55_64
+    AGE65_BI
+    RACEG21_
+    NOHS
+    HSGRAD
+    SOMECOLL
+    INC15
+    INC1525
+    INC2550
+    EMP_EMPL
+    EMP_UNEM
+    GENHLTH_
+    DRNKANY5
+    SMOKE100
+    CPROB1
+    CPROB2
+    C
+    FINALWT
+    STSTR_2
+    STRATAPSU_2
+
+  Save file format           Free
+
+  Save file record length    10000
+
+
+DIAGRAM INFORMATION
+
+  Mplus diagrams are currently not available for Mixture analysis.
+  No diagram output was produced.
+
+
+     Beginning Time:  14:41:13
+        Ending Time:  14:41:21
+       Elapsed Time:  00:00:08
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2018 Muthen & Muthen

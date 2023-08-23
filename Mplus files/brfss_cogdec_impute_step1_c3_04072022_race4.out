@@ -1,0 +1,58 @@
+Mplus VERSION 8.1
+MUTHEN & MUTHEN
+04/12/2022   1:56 PM
+
+INPUT INSTRUCTIONS
+
+  Title:
+    BRFSS Cognitive Decline Latent Class Analysis 3-Step Method: Step 1
+   ! Using imputed subset data of only those who completed the module.
+
+  Data:
+    File is 'C:\Users\tuk04132\OneDrive - Temple University\Documents\
+    LCA BRFSS\BRFSS_CogDec_impute.csv' ;
+    Format is FREE;
+  Define:
+      stratapsu_2 = psu_2*ststr_2;
+  Variable:
+    names = STATE PSU GENHLTH SEX MARITAL EMPLOY1 SMOKE100 CIMEMLOS CDHOUSE
+  CDASSIST CDHELP CDSOCIAL CDDISCUS STSTR finalwt RACEG21 AGEG BMI5CAT
+  EDUCAG INCOMG DRNKANY5 year version stratapsu psu_2 ststr_2 AGEG_rec
+  age55_64_bin age65_bin RACEG21_rec black aian asian nhpi other multi
+  hisp other4 nohs hsgrad SomeColl INCOMG_4cat inc15 inc1525 inc2550 EMPLOY1_3cat
+  EMP_empl EMP_unempl GENHLTH_bin;
+    usevariables = ststr_2 finalwt CDHOUSE CDASSIST CDHELP
+    CDSOCIAL CDDISCUS stratapsu_2;
+    categorical  = CDHOUSE CDASSIST CDHELP CDSOCIAL CDDISCUS;
+    auxiliary = SEX age55_64_bin age65_bin black other4 hisp nohs
+    hsgrad SomeColl inc15 inc1525 inc2550 EMP_empl
+    EMP_unempl GENHLTH_bin DRNKANY5 SMOKE100;
+    strat = ststr_2;
+    cluster = stratapsu_2;
+    weight = finalwt;
+    missing = ALL(99);
+    classes = c(3);
+  Analysis:
+    Type = complex mixture;
+  Savedata:
+    file is brfss_cogdec_impute_step1_c3_save_04122022_race4.txt ;
+    save is cprob;
+    format is free;
+  output:
+    tech10 tech11;
+
+*** ERROR in DATA command
+  The file specified for the FILE option cannot be found.  Check that this
+  file exists:  C:\Users\tuk04132\OneDrive - Temple University\Documents\LCA BRFSS\BRFSS_CogDec_impute.csv
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2018 Muthen & Muthen

@@ -1,0 +1,36 @@
+Title:
+  BRFSS Cognitive Decline Latent Class Analysis 3-Step Method: Step 1
+ ! Using imputed subset data of only those who completed the module.
+
+Data:
+  File is 'C:\Users\tuk04132\OneDrive - Temple University\Documents\
+  LCA BRFSS\BRFSS_CogDec_impute.csv' ;
+  Format is FREE;
+Define:
+    stratapsu_2 = psu_2*ststr_2;
+Variable:
+  names = STATE PSU GENHLTH SEX MARITAL EMPLOY1 SMOKE100 CIMEMLOS CDHOUSE 
+CDASSIST CDHELP CDSOCIAL CDDISCUS STSTR finalwt RACEG21 AGEG BMI5CAT 
+EDUCAG INCOMG DRNKANY5 year version stratapsu psu_2 ststr_2 AGEG_rec 
+age55_64_bin age65_bin RACEG21_rec black aian asian nhpi other multi 
+hisp nohs hsgrad SomeColl INCOMG_4cat inc15 inc1525 inc2550 EMPLOY1_3cat 
+EMP_empl EMP_unempl GENHLTH_bin;
+  usevariables = ststr_2 finalwt CDHOUSE CDASSIST CDHELP 
+  CDSOCIAL CDDISCUS stratapsu_2;
+  categorical  = CDHOUSE CDASSIST CDHELP CDSOCIAL CDDISCUS;
+  auxiliary = (R3STEP) SEX age55_64_bin age65_bin black aian asian nhpi 
+  other multi hisp nohs hsgrad SomeColl inc15 inc1525 inc2550 EMP_empl 
+  EMP_unempl GENHLTH_bin DRNKANY5 SMOKE100;
+  strat = ststr_2;
+  cluster = stratapsu_2;
+  weight = finalwt;
+  missing = ALL(99);
+  classes = c(2);
+Analysis:
+  Type = complex mixture;
+Savedata:
+  file is brfss_cogdec_impute_step1_c2_save_04072022.txt ;
+  save is cprob;
+  format is free;
+output:
+  tech10 tech11;

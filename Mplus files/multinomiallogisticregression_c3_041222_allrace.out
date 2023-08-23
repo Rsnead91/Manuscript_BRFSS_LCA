@@ -1,0 +1,765 @@
+Mplus VERSION 8.1
+MUTHEN & MUTHEN
+04/13/2022   4:30 PM
+
+INPUT INSTRUCTIONS
+
+  Title:
+    BRFSS Cognitive Decline Multinomial Logistic Regression
+   ! Using imputed subset data of only those who completed the module.
+
+  Data:
+    File is 'C:\Users\tuk04132\OneDrive - Temple University\Documents\
+    LCA BRFSS\brfss_cogdec_impute_step1_c3_save_04112022_allrace.txt' ;
+    Format is FREE;
+  Define:
+      if (c eq 1) then dep = 3;
+      if (c eq 2) then dep = 2;
+      if (c eq 3) then dep = 1;
+  Variable:
+        names = CDHOUSE CDASSIST CDHELP CDSOCIAL CDDISCUS SEX AGE55_64
+  age65_bi black aian asian nhpi other multi hisp nohs hsgrad SomeColl
+  INC15 INC1525 INC2550 EMP_empl EMP_unem GENHLTH_ DRNKANY5 SMOKE100
+  CPROB1 CPROB2 CPROB3 C FINALWT ststr psu3;
+        usevariables = ststr psu3 finalwt C SEX AGE55_64
+        age65_bi black aian asian nhpi other multi hisp nohs hsgrad
+        SomeColl INC15 INC1525 INC2550 EMP_empl EMP_unem GENHLTH_
+        DRNKANY5 SMOKE100 dep;
+        nominal = dep;
+        strat = ststr;
+        cluster = psu3;
+        weight = finalwt;
+        missing = *;
+    Analysis:
+        Estimator = MLR;
+        Type = complex;
+        integration = montecarlo (100);
+    Model:
+        dep ON SEX AGE55_64 age65_bi black aian asian nhpi other multi
+        hisp nohs hsgrad SomeColl INC15 INC1525 INC2550 EMP_empl
+        EMP_unem GENHLTH_ DRNKANY5 SMOKE100;
+        SEX AGE55_64 age65_bi black aian asian nhpi other multi
+        hisp nohs hsgrad SomeColl INC15 INC1525 INC2550 EMP_empl
+        EMP_unem GENHLTH_ DRNKANY5 SMOKE100;
+  !  Savedata:
+  !      file is brfss_cogdec_impute_step3_c2_save.txt;
+  !      save is cprob;
+  !      format is free;
+    output:
+        tech10;
+
+
+
+*** WARNING in MODEL command
+  Variable is uncorrelated with all other variables:  C
+*** WARNING in MODEL command
+  At least one variable is uncorrelated with all other variables in the model.
+  Check that this is what is intended.
+*** WARNING in OUTPUT command
+  TECH10 option is only available with categorical or count outcomes.
+  Request for TECH10 is ignored.
+   3 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+BRFSS Cognitive Decline Multinomial Logistic Regression
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                       54645
+
+Number of dependent variables                                    2
+Number of independent variables                                 21
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   C
+
+  Unordered categorical (nominal)
+   DEP
+
+Observed independent variables
+   SEX         AGE55_64    AGE65_BI    BLACK       AIAN        ASIAN
+   NHPI        OTHER       MULTI       HISP        NOHS        HSGRAD
+   SOMECOLL    INC15       INC1525     INC2550     EMP_EMPL    EMP_UNEM
+   GENHLTH_    DRNKANY5    SMOKE100
+
+Variables with special functions
+
+  Stratification        STSTR
+  Cluster variable      PSU3
+  Weight variable       FINALWT
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-02
+    Relative loglikelihood change                        0.100D-05
+    Derivative                                           0.100D-02
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Integration Specifications
+  Type                                                  MONTECARLO
+  Number of integration points                                 100
+  Dimensions of numerical integration                           19
+  Adaptive quadrature                                           ON
+  Monte Carlo integration seed                                   0
+Cholesky                                                       OFF
+
+Input data file(s)
+  C:\Users\tuk04132\OneDrive - Temple University\Documents\LCA BRFSS\brfss_cogde
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns            68
+     Number of strata                    1730
+     Number of clusters                  1730
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR Y
+
+
+           Covariance Coverage
+              C             SEX           AGE55_64      AGE65_BI      BLACK
+              ________      ________      ________      ________      ________
+ C              1.000
+ SEX            1.000         1.000
+ AGE55_64       1.000         1.000         1.000
+ AGE65_BI       1.000         1.000         1.000         1.000
+ BLACK          0.981         0.980         0.981         0.981         0.981
+ AIAN           0.981         0.980         0.981         0.981         0.981
+ ASIAN          0.981         0.980         0.981         0.981         0.981
+ NHPI           0.981         0.980         0.981         0.981         0.981
+ OTHER          0.981         0.980         0.981         0.981         0.981
+ MULTI          0.981         0.980         0.981         0.981         0.981
+ HISP           0.981         0.980         0.981         0.981         0.981
+ NOHS           0.997         0.997         0.997         0.997         0.978
+ HSGRAD         0.997         0.997         0.997         0.997         0.978
+ SOMECOLL       0.997         0.997         0.997         0.997         0.978
+ INC15          0.832         0.832         0.832         0.832         0.819
+ INC1525        0.832         0.832         0.832         0.832         0.819
+ INC2550        0.832         0.832         0.832         0.832         0.819
+ EMP_EMPL       0.743         0.743         0.743         0.743         0.730
+ EMP_UNEM       0.743         0.743         0.743         0.743         0.730
+ GENHLTH_       0.995         0.995         0.995         0.995         0.976
+ DRNKANY5       0.989         0.989         0.989         0.989         0.970
+ SMOKE100       0.994         0.994         0.994         0.994         0.975
+
+
+           Covariance Coverage
+              AIAN          ASIAN         NHPI          OTHER         MULTI
+              ________      ________      ________      ________      ________
+ AIAN           0.981
+ ASIAN          0.981         0.981
+ NHPI           0.981         0.981         0.981
+ OTHER          0.981         0.981         0.981         0.981
+ MULTI          0.981         0.981         0.981         0.981         0.981
+ HISP           0.981         0.981         0.981         0.981         0.981
+ NOHS           0.978         0.978         0.978         0.978         0.978
+ HSGRAD         0.978         0.978         0.978         0.978         0.978
+ SOMECOLL       0.978         0.978         0.978         0.978         0.978
+ INC15          0.819         0.819         0.819         0.819         0.819
+ INC1525        0.819         0.819         0.819         0.819         0.819
+ INC2550        0.819         0.819         0.819         0.819         0.819
+ EMP_EMPL       0.730         0.730         0.730         0.730         0.730
+ EMP_UNEM       0.730         0.730         0.730         0.730         0.730
+ GENHLTH_       0.976         0.976         0.976         0.976         0.976
+ DRNKANY5       0.970         0.970         0.970         0.970         0.970
+ SMOKE100       0.975         0.975         0.975         0.975         0.975
+
+
+           Covariance Coverage
+              HISP          NOHS          HSGRAD        SOMECOLL      INC15
+              ________      ________      ________      ________      ________
+ HISP           0.981
+ NOHS           0.978         0.997
+ HSGRAD         0.978         0.997         0.997
+ SOMECOLL       0.978         0.997         0.997         0.997
+ INC15          0.819         0.830         0.830         0.830         0.832
+ INC1525        0.819         0.830         0.830         0.830         0.832
+ INC2550        0.819         0.830         0.830         0.830         0.832
+ EMP_EMPL       0.730         0.741         0.741         0.741         0.621
+ EMP_UNEM       0.730         0.741         0.741         0.741         0.621
+ GENHLTH_       0.976         0.992         0.992         0.992         0.829
+ DRNKANY5       0.970         0.986         0.986         0.986         0.825
+ SMOKE100       0.975         0.992         0.992         0.992         0.829
+
+
+           Covariance Coverage
+              INC1525       INC2550       EMP_EMPL      EMP_UNEM      GENHLTH_
+              ________      ________      ________      ________      ________
+ INC1525        0.832
+ INC2550        0.832         0.832
+ EMP_EMPL       0.621         0.621         0.743
+ EMP_UNEM       0.621         0.621         0.743         0.743
+ GENHLTH_       0.829         0.829         0.740         0.740         0.995
+ DRNKANY5       0.825         0.825         0.736         0.736         0.985
+ SMOKE100       0.829         0.829         0.739         0.739         0.990
+
+
+           Covariance Coverage
+              DRNKANY5      SMOKE100
+              ________      ________
+ DRNKANY5       0.989
+ SMOKE100       0.984         0.994
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    DEP
+      Category 1    0.350        19126.557
+      Category 2    0.200        10914.962
+      Category 3    0.450        24603.527
+
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     C                     1.900       0.197       1.000   48.79%       1.000      1.000      2.000
+           54645.000       0.790      -1.706       3.000   31.07%       2.000      3.000
+     SEX                   0.462       0.154       0.000   56.78%       0.000      0.000      0.000
+           54637.000       0.249      -1.976       1.000   43.22%       1.000      1.000
+     AGE55_64              0.307       0.835       0.000   71.79%       0.000      0.000      0.000
+           54645.000       0.213      -1.303       1.000   28.21%       0.000      1.000
+     AGE65_BI              0.412       0.356       0.000   47.47%       0.000      0.000      1.000
+           54645.000       0.242      -1.873       1.000   52.53%       1.000      1.000
+     BLACK                 0.124       2.275       0.000   91.57%       0.000      0.000      0.000
+           53581.000       0.109       3.177       1.000    8.43%       0.000      0.000
+     AIAN                  0.019       7.106       0.000   97.98%       0.000      0.000      0.000
+           53581.000       0.018      48.499       1.000    2.02%       0.000      0.000
+     ASIAN                 0.020       6.883       0.000   98.89%       0.000      0.000      0.000
+           53581.000       0.019      45.373       1.000    1.11%       0.000      0.000
+     NHPI                  0.001      29.718       0.000   99.82%       0.000      0.000      0.000
+           53581.000       0.001     881.172       1.000    0.18%       0.000      0.000
+     OTHER                 0.005      14.209       0.000   99.32%       0.000      0.000      0.000
+           53581.000       0.005     199.901       1.000    0.68%       0.000      0.000
+     MULTI                 0.017       7.504       0.000   97.57%       0.000      0.000      0.000
+           53581.000       0.017      54.307       1.000    2.43%       0.000      0.000
+     HISP                  0.116       2.396       0.000   94.29%       0.000      0.000      0.000
+           53581.000       0.103       3.741       1.000    5.71%       0.000      0.000
+     NOHS                  0.221       1.342       0.000   87.63%       0.000      0.000      0.000
+           54481.000       0.172      -0.198       1.000   12.37%       0.000      0.000
+     HSGRAD                0.297       0.888       0.000   69.09%       0.000      0.000      0.000
+           54481.000       0.209      -1.211       1.000   30.91%       0.000      1.000
+     SOMECOLL              0.297       0.888       0.000   71.21%       0.000      0.000      0.000
+           54481.000       0.209      -1.212       1.000   28.79%       0.000      1.000
+     INC15                 0.212       1.413       0.000   80.30%       0.000      0.000      0.000
+           45461.000       0.167      -0.005       1.000   19.70%       0.000      0.000
+     INC1525               0.235       1.249       0.000   75.85%       0.000      0.000      0.000
+           45461.000       0.180      -0.439       1.000   24.15%       0.000      1.000
+     INC2550               0.249       1.161       0.000   73.91%       0.000      0.000      0.000
+           45461.000       0.187      -0.651       1.000   26.09%       0.000      1.000
+     EMP_EMPL              0.344       0.655       0.000   71.04%       0.000      0.000      0.000
+           40616.000       0.226      -1.570       1.000   28.96%       0.000      1.000
+     EMP_UNEM              0.156       1.897       0.000   87.82%       0.000      0.000      0.000
+           40616.000       0.132       1.600       1.000   12.18%       0.000      0.000
+     GENHLTH_              0.479       0.084       0.000   49.37%       0.000      0.000      1.000
+           54384.000       0.250      -1.993       1.000   50.63%       1.000      1.000
+     DRNKANY5              0.397       0.420       0.000   60.85%       0.000      0.000      0.000
+           54066.000       0.239      -1.823       1.000   39.15%       0.000      1.000
+     SMOKE100              0.587      -0.353       0.000   42.56%       0.000      0.000      1.000
+           54333.000       0.242      -1.875       1.000   57.44%       1.000      1.000
+
+
+     WARNING:  THE VARIANCE CONTRIBUTION FROM A STRATUM WITH A SINGLE CLUSTER
+     (PSU) IS BASED ON THE DIFFERENCE BETWEEN THE SINGLE CLUSTER VALUE AND
+     THE OVERALL CLUSTER MEAN.
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                      298
+
+Loglikelihood
+
+          H0 Value                     -257604.498
+          H0 Scaling Correction Factor     18.8701
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                  515804.996
+          Bayesian (BIC)                518459.763
+          Sample-Size Adjusted BIC      517512.714
+            (n* = (n + 2) / 24)
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ DEP#1      ON
+    SEX               -0.168      0.066     -2.571      0.010
+    AGE55_64          -0.444      0.092     -4.835      0.000
+    AGE65_BI          -1.248      0.103    -12.168      0.000
+    BLACK              0.588      0.082      7.152      0.000
+    AIAN               0.398      0.226      1.759      0.079
+    ASIAN              0.275      0.291      0.943      0.346
+    NHPI               0.408      0.607      0.672      0.501
+    OTHER              0.465      0.286      1.626      0.104
+    MULTI              0.350      0.160      2.180      0.029
+    HISP               0.520      0.095      5.463      0.000
+    NOHS               0.472      0.090      5.224      0.000
+    HSGRAD             0.211      0.081      2.596      0.009
+    SOMECOLL           0.239      0.083      2.882      0.004
+    INC15              1.108      0.112      9.910      0.000
+    INC1525            0.785      0.086      9.072      0.000
+    INC2550            0.400      0.109      3.670      0.000
+    EMP_EMPL          -0.862      0.114     -7.587      0.000
+    EMP_UNEM          -0.049      0.102     -0.476      0.634
+    GENHLTH_          -1.173      0.054    -21.698      0.000
+    DRNKANY5          -0.527      0.057     -9.197      0.000
+    SMOKE100           0.064      0.052      1.220      0.222
+
+ DEP#2      ON
+    SEX                0.050      0.073      0.683      0.495
+    AGE55_64          -0.249      0.085     -2.921      0.003
+    AGE65_BI          -0.751      0.107     -7.001      0.000
+    BLACK              0.020      0.107      0.190      0.849
+    AIAN               0.209      0.208      1.006      0.314
+    ASIAN              0.301      0.387      0.777      0.437
+    NHPI              -0.081      0.665     -0.122      0.903
+    OTHER              0.094      0.247      0.380      0.704
+    MULTI              0.164      0.249      0.659      0.510
+    HISP               0.230      0.122      1.884      0.060
+    NOHS               0.023      0.109      0.212      0.832
+    HSGRAD            -0.002      0.091     -0.019      0.985
+    SOMECOLL           0.120      0.085      1.419      0.156
+    INC15              0.798      0.113      7.067      0.000
+    INC1525            0.727      0.096      7.567      0.000
+    INC2550            0.477      0.077      6.218      0.000
+    EMP_EMPL          -0.246      0.092     -2.666      0.008
+    EMP_UNEM           0.242      0.117      2.068      0.039
+    GENHLTH_          -0.722      0.054    -13.489      0.000
+    DRNKANY5          -0.161      0.067     -2.385      0.017
+    SMOKE100           0.138      0.056      2.451      0.014
+
+ AGE55_64 WITH
+    SEX                0.004      0.002      1.573      0.116
+
+ AGE65_BI WITH
+    SEX                0.002      0.003      0.622      0.534
+    AGE55_64          -0.127      0.002    -54.781      0.000
+
+ BLACK    WITH
+    SEX               -0.005      0.002     -2.851      0.004
+    AGE55_64           0.003      0.002      1.745      0.081
+    AGE65_BI          -0.009      0.002     -3.939      0.000
+
+ AIAN     WITH
+    SEX                0.001      0.001      0.918      0.359
+    AGE55_64           0.002      0.001      2.630      0.009
+    AGE65_BI          -0.002      0.001     -3.574      0.000
+    BLACK             -0.002      0.000     -9.773      0.000
+
+ ASIAN    WITH
+    SEX                0.001      0.001      1.187      0.235
+    AGE55_64          -0.001      0.001     -1.054      0.292
+    AGE65_BI          -0.003      0.001     -2.718      0.007
+    BLACK             -0.002      0.000     -6.753      0.000
+    AIAN               0.000      0.000     -6.165      0.000
+
+ NHPI     WITH
+    SEX                0.000      0.000      1.290      0.197
+    AGE55_64           0.000      0.000     -0.910      0.363
+    AGE65_BI           0.000      0.000     -1.057      0.291
+    BLACK              0.000      0.000     -3.685      0.000
+    AIAN               0.000      0.000     -3.366      0.001
+    ASIAN              0.000      0.000     -2.912      0.004
+
+ OTHER    WITH
+    SEX                0.000      0.000      0.990      0.322
+    AGE55_64           0.000      0.000      0.414      0.679
+    AGE65_BI           0.000      0.000      1.805      0.071
+    BLACK             -0.001      0.000     -6.219      0.000
+    AIAN               0.000      0.000     -6.393      0.000
+    ASIAN              0.000      0.000     -4.690      0.000
+    NHPI               0.000      0.000     -2.090      0.037
+
+ MULTI    WITH
+    SEX                0.000      0.001     -0.596      0.551
+    AGE55_64           0.002      0.001      3.001      0.003
+    AGE65_BI          -0.002      0.001     -4.255      0.000
+    BLACK             -0.002      0.000    -10.643      0.000
+    AIAN               0.000      0.000     -8.680      0.000
+    ASIAN              0.000      0.000     -5.732      0.000
+    NHPI               0.000      0.000     -3.552      0.000
+    OTHER              0.000      0.000     -5.803      0.000
+
+ HISP     WITH
+    SEX               -0.005      0.002     -1.979      0.048
+    AGE55_64           0.004      0.003      1.446      0.148
+    AGE65_BI          -0.013      0.002     -5.149      0.000
+    BLACK             -0.014      0.001    -11.892      0.000
+    AIAN              -0.002      0.000     -9.940      0.000
+    ASIAN             -0.002      0.000     -5.411      0.000
+    NHPI               0.000      0.000     -3.325      0.001
+    OTHER             -0.001      0.000     -6.012      0.000
+    MULTI             -0.002      0.000     -9.408      0.000
+
+ NOHS     WITH
+    SEX                0.003      0.003      1.075      0.283
+    AGE55_64           0.001      0.002      0.302      0.763
+    AGE65_BI          -0.006      0.003     -2.258      0.024
+    BLACK              0.011      0.002      5.973      0.000
+    AIAN               0.003      0.001      3.345      0.001
+    ASIAN             -0.002      0.001     -2.466      0.014
+    NHPI               0.000      0.000     -1.463      0.144
+    OTHER              0.000      0.000      0.684      0.494
+    MULTI              0.000      0.001     -0.463      0.643
+    HISP               0.034      0.004      8.918      0.000
+
+ HSGRAD   WITH
+    SEX               -0.003      0.002     -1.270      0.204
+    AGE55_64           0.003      0.002      1.289      0.197
+    AGE65_BI          -0.001      0.002     -0.490      0.624
+    BLACK              0.002      0.002      1.328      0.184
+    AIAN               0.000      0.001      0.110      0.912
+    ASIAN             -0.001      0.001     -1.093      0.274
+    NHPI               0.000      0.000      0.923      0.356
+    OTHER              0.000      0.000      0.707      0.479
+    MULTI              0.000      0.001     -0.589      0.556
+    HISP              -0.010      0.002     -5.720      0.000
+    NOHS              -0.066      0.002    -28.579      0.000
+
+ SOMECOLL WITH
+    SEX               -0.004      0.003     -1.209      0.227
+    AGE55_64           0.004      0.002      1.893      0.058
+    AGE65_BI          -0.002      0.003     -0.830      0.407
+    BLACK             -0.003      0.002     -1.935      0.053
+    AIAN              -0.001      0.001     -1.749      0.080
+    ASIAN             -0.002      0.001     -2.302      0.021
+    NHPI               0.000      0.000     -1.128      0.259
+    OTHER              0.000      0.000     -1.696      0.090
+    MULTI              0.001      0.000      1.359      0.174
+    HISP              -0.014      0.002     -5.896      0.000
+    NOHS              -0.066      0.001    -45.265      0.000
+    HSGRAD            -0.088      0.002    -46.157      0.000
+
+ INC15    WITH
+    SEX               -0.012      0.003     -4.458      0.000
+    AGE55_64           0.010      0.003      3.878      0.000
+    AGE65_BI          -0.025      0.002    -10.702      0.000
+    BLACK              0.009      0.002      5.179      0.000
+    AIAN               0.002      0.001      3.128      0.002
+    ASIAN             -0.002      0.001     -2.182      0.029
+    NHPI               0.000      0.000     -1.323      0.186
+    OTHER              0.000      0.000     -1.829      0.067
+    MULTI              0.002      0.001      3.269      0.001
+    HISP               0.019      0.003      6.390      0.000
+    NOHS               0.043      0.002     17.589      0.000
+    HSGRAD             0.004      0.002      2.126      0.033
+    SOMECOLL          -0.020      0.002     -9.584      0.000
+
+ INC1525  WITH
+    SEX               -0.008      0.002     -3.458      0.001
+    AGE55_64           0.003      0.002      1.459      0.145
+    AGE65_BI           0.000      0.002      0.110      0.913
+    BLACK              0.007      0.002      4.490      0.000
+    AIAN               0.001      0.001      1.838      0.066
+    ASIAN             -0.002      0.001     -1.662      0.097
+    NHPI               0.000      0.000     -1.113      0.266
+    OTHER              0.000      0.000      1.364      0.172
+    MULTI              0.000      0.000     -0.323      0.746
+    HISP               0.006      0.002      2.356      0.018
+    NOHS               0.018      0.003      7.050      0.000
+    HSGRAD             0.015      0.002      7.396      0.000
+    SOMECOLL          -0.009      0.002     -4.991      0.000
+    INC15             -0.050      0.002    -28.108      0.000
+
+ INC2550  WITH
+    SEX                0.003      0.002      1.371      0.170
+    AGE55_64          -0.009      0.002     -4.407      0.000
+    AGE65_BI           0.031      0.002     12.470      0.000
+    BLACK              0.001      0.002      0.467      0.641
+    AIAN               0.000      0.001     -0.657      0.511
+    ASIAN              0.000      0.001      0.336      0.737
+    NHPI               0.000      0.000     -1.315      0.188
+    OTHER              0.001      0.000      2.133      0.033
+    MULTI             -0.002      0.000     -4.165      0.000
+    HISP              -0.005      0.002     -3.197      0.001
+    NOHS              -0.011      0.002     -4.838      0.000
+    HSGRAD             0.008      0.002      4.567      0.000
+    SOMECOLL           0.010      0.002      4.129      0.000
+    INC15             -0.053      0.001    -35.661      0.000
+    INC1525           -0.058      0.002    -29.260      0.000
+
+ EMP_EMPL WITH
+    SEX                0.012      0.003      3.618      0.000
+    AGE55_64           0.038      0.003     12.481      0.000
+    AGE65_BI          -0.110      0.003    -36.744      0.000
+    BLACK              0.000      0.002     -0.026      0.979
+    AIAN               0.000      0.001     -0.453      0.650
+    ASIAN              0.003      0.002      1.907      0.057
+    NHPI               0.000      0.000      1.323      0.186
+    OTHER             -0.001      0.000     -2.790      0.005
+    MULTI              0.001      0.001      1.822      0.068
+    HISP               0.001      0.003      0.481      0.631
+    NOHS              -0.013      0.003     -4.382      0.000
+    HSGRAD            -0.006      0.003     -2.232      0.026
+    SOMECOLL           0.006      0.003      2.434      0.015
+    INC15             -0.024      0.003     -8.359      0.000
+    INC1525           -0.017      0.003     -6.769      0.000
+    INC2550           -0.006      0.003     -2.249      0.025
+
+ EMP_UNEM WITH
+    SEX               -0.027      0.002    -14.023      0.000
+    AGE55_64           0.011      0.003      3.934      0.000
+    AGE65_BI          -0.041      0.002    -17.240      0.000
+    BLACK              0.004      0.002      2.005      0.045
+    AIAN               0.001      0.001      0.982      0.326
+    ASIAN              0.001      0.001      0.382      0.702
+    NHPI               0.000      0.000     -1.788      0.074
+    OTHER              0.000      0.000      1.092      0.275
+    MULTI              0.000      0.000     -0.561      0.575
+    HISP               0.012      0.003      4.589      0.000
+    NOHS               0.023      0.003      8.105      0.000
+    HSGRAD             0.005      0.002      1.998      0.046
+    SOMECOLL          -0.011      0.002     -6.252      0.000
+    INC15              0.044      0.004     12.196      0.000
+    INC1525            0.005      0.003      1.727      0.084
+    INC2550           -0.018      0.002     -8.619      0.000
+    EMP_EMPL          -0.055      0.003    -21.530      0.000
+
+ GENHLTH_ WITH
+    SEX                0.001      0.002      0.561      0.575
+    AGE55_64          -0.018      0.002     -7.706      0.000
+    AGE65_BI           0.025      0.003      7.475      0.000
+    BLACK             -0.008      0.002     -4.297      0.000
+    AIAN              -0.002      0.001     -3.243      0.001
+    ASIAN              0.003      0.001      2.551      0.011
+    NHPI               0.000      0.000     -0.263      0.792
+    OTHER              0.000      0.000     -0.372      0.710
+    MULTI             -0.001      0.001     -1.487      0.137
+    HISP              -0.019      0.003     -6.396      0.000
+    NOHS              -0.040      0.002    -16.102      0.000
+    HSGRAD            -0.010      0.002     -5.056      0.000
+    SOMECOLL           0.014      0.002      5.661      0.000
+    INC15             -0.048      0.002    -20.241      0.000
+    INC1525           -0.027      0.002    -11.728      0.000
+    INC2550            0.011      0.003      4.139      0.000
+    EMP_EMPL           0.025      0.003      8.586      0.000
+    EMP_UNEM          -0.026      0.002    -10.664      0.000
+
+ DRNKANY5 WITH
+    SEX                0.033      0.003     13.092      0.000
+    AGE55_64           0.000      0.003     -0.120      0.905
+    AGE65_BI          -0.015      0.002     -6.387      0.000
+    BLACK             -0.002      0.002     -0.961      0.337
+    AIAN              -0.002      0.001     -2.484      0.013
+    ASIAN              0.001      0.002      0.486      0.627
+    NHPI               0.000      0.000      0.474      0.636
+    OTHER              0.000      0.000      0.343      0.732
+    MULTI             -0.001      0.001     -2.595      0.009
+    HISP              -0.011      0.003     -3.583      0.000
+    NOHS              -0.027      0.003    -10.705      0.000
+    HSGRAD            -0.015      0.002     -6.730      0.000
+    SOMECOLL           0.014      0.003      4.704      0.000
+    INC15             -0.028      0.002    -12.025      0.000
+    INC1525           -0.023      0.002     -9.606      0.000
+    INC2550            0.002      0.002      0.808      0.419
+    EMP_EMPL           0.032      0.003     11.310      0.000
+    EMP_UNEM          -0.017      0.002     -7.936      0.000
+    GENHLTH_           0.046      0.004     13.167      0.000
+
+ SMOKE100 WITH
+    SEX                0.032      0.003      9.069      0.000
+    AGE55_64           0.013      0.002      6.065      0.000
+    AGE65_BI          -0.014      0.002     -5.550      0.000
+    BLACK             -0.004      0.002     -1.987      0.047
+    AIAN               0.002      0.001      2.553      0.011
+    ASIAN             -0.003      0.001     -3.354      0.001
+    NHPI               0.000      0.000     -1.044      0.296
+    OTHER              0.000      0.000     -0.793      0.428
+    MULTI              0.002      0.001      3.283      0.001
+    HISP              -0.017      0.003     -6.607      0.000
+    NOHS               0.008      0.003      2.997      0.003
+    HSGRAD             0.012      0.002      4.866      0.000
+    SOMECOLL           0.006      0.002      2.619      0.009
+    INC15              0.014      0.002      5.887      0.000
+    INC1525            0.007      0.002      3.176      0.001
+    INC2550           -0.002      0.002     -0.735      0.463
+    EMP_EMPL          -0.006      0.003     -1.970      0.049
+    EMP_UNEM           0.005      0.003      1.563      0.118
+    GENHLTH_          -0.022      0.003     -8.624      0.000
+    DRNKANY5           0.017      0.002      6.977      0.000
+
+ Means
+    C                  1.900      0.011    180.528      0.000
+    SEX                0.462      0.006     82.676      0.000
+    AGE55_64           0.307      0.006     55.464      0.000
+    AGE65_BI           0.412      0.010     42.296      0.000
+    BLACK              0.124      0.007     18.423      0.000
+    AIAN               0.019      0.001     12.767      0.000
+    ASIAN              0.020      0.003      6.835      0.000
+    NHPI               0.001      0.000      3.635      0.000
+    OTHER              0.005      0.001      6.794      0.000
+    MULTI              0.017      0.001     12.398      0.000
+    HISP               0.116      0.009     13.244      0.000
+    NOHS               0.222      0.005     40.874      0.000
+    HSGRAD             0.297      0.007     40.080      0.000
+    SOMECOLL           0.297      0.006     46.872      0.000
+    INC15              0.216      0.006     36.567      0.000
+    INC1525            0.239      0.007     35.473      0.000
+    INC2550            0.250      0.005     47.472      0.000
+    EMP_EMPL           0.351      0.008     41.984      0.000
+    EMP_UNEM           0.200      0.007     27.579      0.000
+    GENHLTH_           0.479      0.006     75.407      0.000
+    DRNKANY5           0.397      0.008     52.461      0.000
+    SMOKE100           0.587      0.007     88.198      0.000
+
+ Intercepts
+    DEP#1              0.547      0.122      4.467      0.000
+    DEP#2             -0.508      0.120     -4.229      0.000
+
+ Variances
+    C                  0.790      0.005    150.097      0.000
+    SEX                0.249      0.000    579.993      0.000
+    AGE55_64           0.213      0.002     99.735      0.000
+    AGE65_BI           0.242      0.002    141.701      0.000
+    BLACK              0.109      0.005     21.462      0.000
+    AIAN               0.018      0.001     13.012      0.000
+    ASIAN              0.019      0.003      6.956      0.000
+    NHPI               0.001      0.000      3.631      0.000
+    OTHER              0.005      0.001      6.853      0.000
+    MULTI              0.017      0.001     12.696      0.000
+    HISP               0.103      0.007     15.216      0.000
+    NOHS               0.172      0.003     57.051      0.000
+    HSGRAD             0.209      0.003     69.226      0.000
+    SOMECOLL           0.209      0.003     81.350      0.000
+    INC15              0.167      0.003     47.913      0.000
+    INC1525            0.180      0.003     54.833      0.000
+    INC2550            0.187      0.003     71.879      0.000
+    EMP_EMPL           0.216      0.002     91.969      0.000
+    EMP_UNEM           0.136      0.004     31.687      0.000
+    GENHLTH_           0.249      0.000    890.398      0.000
+    DRNKANY5           0.239      0.002    152.307      0.000
+    SMOKE100           0.242      0.001    208.893      0.000
+
+
+LOGISTIC REGRESSION ODDS RATIO RESULTS
+
+                                         (Est. - 1) Two-Tailed
+                    Estimate       S.E.     / S.E.    P-Value
+
+ DEP#1      ON
+    SEX                0.845      0.055     -2.800      0.005
+    AGE55_64           0.641      0.059     -6.088      0.000
+    AGE65_BI           0.287      0.029    -24.209      0.000
+    BLACK              1.800      0.148      5.408      0.000
+    AIAN               1.488      0.336      1.451      0.147
+    ASIAN              1.316      0.383      0.824      0.410
+    NHPI               1.503      0.912      0.552      0.581
+    OTHER              1.592      0.456      1.300      0.194
+    MULTI              1.419      0.228      1.840      0.066
+    HISP               1.681      0.160      4.261      0.000
+    NOHS               1.604      0.145      4.164      0.000
+    HSGRAD             1.235      0.101      2.340      0.019
+    SOMECOLL           1.270      0.105      2.563      0.010
+    INC15              3.029      0.339      5.990      0.000
+    INC1525            2.192      0.190      6.286      0.000
+    INC2550            1.492      0.163      3.025      0.002
+    EMP_EMPL           0.422      0.048    -12.042      0.000
+    EMP_UNEM           0.952      0.098     -0.488      0.626
+    GENHLTH_           0.309      0.017    -41.282      0.000
+    DRNKANY5           0.591      0.034    -12.107      0.000
+    SMOKE100           1.066      0.056      1.182      0.237
+
+ DEP#2      ON
+    SEX                1.051      0.077      0.666      0.505
+    AGE55_64           0.779      0.067     -3.318      0.001
+    AGE65_BI           0.472      0.051    -10.433      0.000
+    BLACK              1.020      0.109      0.188      0.851
+    AIAN               1.233      0.256      0.908      0.364
+    ASIAN              1.351      0.523      0.671      0.502
+    NHPI               0.922      0.613     -0.127      0.899
+    OTHER              1.098      0.271      0.363      0.717
+    MULTI              1.178      0.293      0.608      0.544
+    HISP               1.258      0.153      1.683      0.092
+    NOHS               1.023      0.111      0.210      0.834
+    HSGRAD             0.998      0.091     -0.019      0.985
+    SOMECOLL           1.128      0.096      1.337      0.181
+    INC15              2.220      0.251      4.870      0.000
+    INC1525            2.068      0.199      5.378      0.000
+    INC2550            1.611      0.123      4.946      0.000
+    EMP_EMPL           0.782      0.072     -3.022      0.003
+    EMP_UNEM           1.274      0.149      1.837      0.066
+    GENHLTH_           0.486      0.026    -19.779      0.000
+    DRNKANY5           0.852      0.057     -2.587      0.010
+    SMOKE100           1.148      0.065      2.289      0.022
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.176E-07
+       (ratio of smallest to largest eigenvalue)
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\users\tuk04132\onedrive - temple university\documents\lca brfss\multinomiallogisticregression_c3_041222_allrace.d
+
+     Beginning Time:  16:30:51
+        Ending Time:  16:46:54
+       Elapsed Time:  00:16:03
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2018 Muthen & Muthen

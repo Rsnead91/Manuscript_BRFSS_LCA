@@ -1,0 +1,43 @@
+Title:
+  BRFSS Cognitive Decline Multinomial Logistic Regression
+ ! Using imputed subset data of only those who completed the module.
+
+Data:
+  File is 'C:\Users\tuk04132\OneDrive - Temple University\Documents\
+  LCA BRFSS\brfss_cogdec_impute_step1_c3_save_04142022_race4.txt' ;
+  Format is FREE;
+Define:
+    if (c eq 1) then dep = 3;
+    if (c eq 2) then dep = 2;
+    if (c eq 3) then dep = 1;
+Variable:
+      names = CDHOUSE CDASSIST CDHELP CDSOCIAL CDDISCUS SEX AGE55_64 
+age65_bi black4 other4 hisp4 nohs hsgrad SomeColl INC15 INC1525 INC2550 
+EMP_empl EMP_unem GENHLTH_ DRNKANY5 SMOKE100 CPROB1 CPROB2 CPROB3 C 
+FINALWT ststr psu3;
+      usevariables = ststr psu3 finalwt SEX AGE55_64 
+      age65_bi black4 other4 hisp4 nohs hsgrad 
+      SomeColl INC15 INC1525 INC2550 EMP_empl EMP_unem GENHLTH_ 
+      DRNKANY5 SMOKE100 dep;
+      nominal = dep;
+      strat = ststr;
+      cluster = psu3;
+      weight = finalwt;
+      missing = *;
+  Analysis:
+      Estimator = MLR;
+      Type = complex;
+      integration = montecarlo (5);
+  Model:
+      dep ON SEX AGE55_64 age65_bi black4 other4 hisp4 nohs hsgrad 
+      SomeColl INC15 INC1525 INC2550 EMP_empl EMP_unem GENHLTH_ 
+      DRNKANY5 SMOKE100;
+      SEX AGE55_64 age65_bi black4 other4 hisp4 nohs hsgrad 
+      SomeColl INC15 INC1525 INC2550 EMP_empl EMP_unem GENHLTH_ 
+      DRNKANY5 SMOKE100;
+!  Savedata:
+!      file is brfss_cogdec_impute_step3_c2_save.txt;
+!      save is cprob;
+!      format is free;
+  output:
+      tech10;

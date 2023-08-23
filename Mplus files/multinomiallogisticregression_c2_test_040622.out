@@ -1,0 +1,507 @@
+Mplus VERSION 8.1
+MUTHEN & MUTHEN
+04/06/2022  10:05 PM
+
+INPUT INSTRUCTIONS
+
+  Title:
+    BRFSS Cognitive Decline Multinomial Logistic Regression
+   ! Using imputed subset data of only those who completed the module.
+
+  Data:
+    File is 'C:\Users\tuk04132\OneDrive - Temple University\Documents\
+    LCA BRFSS\brfss_cogdec_impute_step1_c2_save_04062022.txt' ;
+    Format is FREE;
+  Variable:
+        names = CDHOUSE CDASSIST CDHELP CDSOCIAL CDDISCUS SEX AGE55_64
+  age65_bi RACEG21_ nohs hsgrad SomeColl INC15 INC1525 INC2550 EMP_empl
+  EMP_unem GENHLTH_ DRNKANY5 SMOKE100 CPROB1 CPROB2 C FINALWT ststr_2
+  stratapsu_2;
+        usevariables = ststr_2 stratapsu_2 finalwt C SEX AGE55_64
+        age65_bi RACEG21_ nohs hsgrad SomeColl INC15 INC1525 INC2550
+        EMP_empl EMP_unem GENHLTH_ DRNKANY5 SMOKE100;
+        categorical = C;
+        strat = ststr_2;
+        cluster = stratapsu_2;
+        weight = finalwt;
+        missing = *;
+    Analysis:
+        Estimator = MLR;
+        Type = complex;
+        integration = montecarlo;
+    Model:
+        C ON SEX AGE55_64 age65_bi RACEG21_ nohs hsgrad
+        SomeColl INC15 INC1525 INC2550 EMP_empl EMP_unem GENHLTH_
+        DRNKANY5 SMOKE100;
+        SEX AGE55_64 age65_bi RACEG21_ nohs hsgrad
+        SomeColl INC15 INC1525 INC2550 EMP_empl EMP_unem GENHLTH_
+        DRNKANY5 SMOKE100;
+  !  Savedata:
+  !      file is brfss_cogdec_impute_step3_c2_save.txt;
+  !      save is cprob;
+  !      format is free;
+    output:
+        tech10;
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+BRFSS Cognitive Decline Multinomial Logistic Regression
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                       32128
+
+Number of dependent variables                                    1
+Number of independent variables                                 15
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   C
+
+Observed independent variables
+   SEX         AGE55_64    AGE65_BI    RACEG21_    NOHS        HSGRAD
+   SOMECOLL    INC15       INC1525     INC2550     EMP_EMPL    EMP_UNEM
+   GENHLTH_    DRNKANY5    SMOKE100
+
+Variables with special functions
+
+  Stratification        STSTR_2
+  Cluster variable      STRATAPS
+  Weight variable       FINALWT
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-02
+    Relative loglikelihood change                        0.100D-05
+    Derivative                                           0.100D-02
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Integration Specifications
+  Type                                                  MONTECARLO
+  Number of integration points                                3250
+  Dimensions of numerical integration                           13
+  Adaptive quadrature                                           ON
+  Monte Carlo integration seed                                   0
+Link                                                         LOGIT
+Cholesky                                                       OFF
+
+Input data file(s)
+  C:\Users\tuk04132\OneDrive - Temple University\Documents\LCA BRFSS\brfss_cogde
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns            60
+     Number of y missing data patterns          60
+     Number of u missing data patterns           1
+     Number of strata                      52
+     Number of clusters                   135
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR Y
+
+
+           Covariance Coverage
+              SEX           AGE55_64      AGE65_BI      RACEG21_      NOHS
+              ________      ________      ________      ________      ________
+ SEX            1.000
+ AGE55_64       1.000         1.000
+ AGE65_BI       1.000         1.000         1.000
+ RACEG21_       0.981         0.982         0.982         0.982
+ NOHS           0.996         0.997         0.997         0.979         0.997
+ HSGRAD         0.996         0.997         0.997         0.979         0.997
+ SOMECOLL       0.996         0.997         0.997         0.979         0.997
+ INC15          0.839         0.839         0.839         0.826         0.837
+ INC1525        0.839         0.839         0.839         0.826         0.837
+ INC2550        0.839         0.839         0.839         0.826         0.837
+ EMP_EMPL       0.734         0.734         0.734         0.722         0.731
+ EMP_UNEM       0.734         0.734         0.734         0.722         0.731
+ GENHLTH_       0.995         0.995         0.995         0.977         0.992
+ DRNKANY5       0.990         0.990         0.990         0.972         0.987
+ SMOKE100       0.994         0.994         0.994         0.976         0.991
+
+
+           Covariance Coverage
+              HSGRAD        SOMECOLL      INC15         INC1525       INC2550
+              ________      ________      ________      ________      ________
+ HSGRAD         0.997
+ SOMECOLL       0.997         0.997
+ INC15          0.837         0.837         0.839
+ INC1525        0.837         0.837         0.839         0.839
+ INC2550        0.837         0.837         0.839         0.839         0.839
+ EMP_EMPL       0.731         0.731         0.618         0.618         0.618
+ EMP_UNEM       0.731         0.731         0.618         0.618         0.618
+ GENHLTH_       0.992         0.992         0.835         0.835         0.835
+ DRNKANY5       0.987         0.987         0.832         0.832         0.832
+ SMOKE100       0.991         0.991         0.836         0.836         0.836
+
+
+           Covariance Coverage
+              EMP_EMPL      EMP_UNEM      GENHLTH_      DRNKANY5      SMOKE100
+              ________      ________      ________      ________      ________
+ EMP_EMPL       0.734
+ EMP_UNEM       0.734         0.734
+ GENHLTH_       0.731         0.731         0.995
+ DRNKANY5       0.727         0.727         0.985         0.990
+ SMOKE100       0.730         0.730         0.990         0.985         0.994
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    C
+      Category 1    0.647        20793.496
+      Category 2    0.353        11334.504
+
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     SEX                   0.472       0.112       0.000   57.44%       0.000      0.000      0.000
+           32120.000       0.249      -1.988       1.000   42.56%       1.000      1.000
+     AGE55_64              0.313       0.805       0.000   70.62%       0.000      0.000      0.000
+           32128.000       0.215      -1.352       1.000   29.38%       0.000      1.000
+     AGE65_BI              0.390       0.452       0.000   50.00%       0.000      0.000      0.500
+           32128.000       0.238      -1.796       1.000   50.00%       1.000      1.000
+     RACEG21_              0.308       0.834       0.000   78.78%       0.000      0.000      0.000
+           31535.000       0.213      -1.305       1.000   21.22%       0.000      1.000
+     NOHS                  0.227       1.305       0.000   87.06%       0.000      0.000      0.000
+           32021.000       0.175      -0.296       1.000   12.94%       0.000      0.000
+     HSGRAD                0.293       0.912       0.000   68.87%       0.000      0.000      0.000
+           32021.000       0.207      -1.168       1.000   31.13%       0.000      1.000
+     SOMECOLL              0.301       0.869       0.000   71.44%       0.000      0.000      0.000
+           32021.000       0.210      -1.245       1.000   28.56%       0.000      1.000
+     INC15                 0.216       1.378       0.000   79.33%       0.000      0.000      0.000
+           26952.000       0.170      -0.102       1.000   20.67%       0.000      1.000
+     INC1525               0.230       1.284       0.000   75.78%       0.000      0.000      0.000
+           26952.000       0.177      -0.351       1.000   24.22%       0.000      1.000
+     INC2550               0.251       1.148       0.000   74.15%       0.000      0.000      0.000
+           26952.000       0.188      -0.682       1.000   25.85%       0.000      1.000
+     EMP_EMPL              0.352       0.620       0.000   69.99%       0.000      0.000      0.000
+           23573.000       0.228      -1.615       1.000   30.01%       0.000      1.000
+     EMP_UNEM              0.166       1.793       0.000   87.24%       0.000      0.000      0.000
+           23573.000       0.139       1.213       1.000   12.76%       0.000      0.000
+     GENHLTH_              0.481       0.076       0.000   50.12%       0.000      0.000      0.000
+           31966.000       0.250      -1.994       1.000   49.88%       1.000      1.000
+     DRNKANY5              0.400       0.407       0.000   60.77%       0.000      0.000      0.000
+           31811.000       0.240      -1.834       1.000   39.23%       0.000      1.000
+     SMOKE100              0.587      -0.351       0.000   42.40%       0.000      0.000      1.000
+           31950.000       0.243      -1.876       1.000   57.60%       1.000      1.000
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                      151
+
+Loglikelihood
+
+          H0 Value                     -259372.695
+          H0 Scaling Correction Factor      8.6520
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                  519047.391
+          Bayesian (BIC)                520312.391
+          Sample-Size Adjusted BIC      519832.514
+            (n* = (n + 2) / 24)
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ C          ON
+    SEX               -0.219      0.112     -1.959      0.050
+    AGE55_64          -0.264      0.155     -1.709      0.087
+    AGE65_BI          -0.860      0.126     -6.806      0.000
+    RACEG21_           0.391      0.059      6.571      0.000
+    NOHS               0.415      0.086      4.799      0.000
+    HSGRAD             0.170      0.076      2.250      0.024
+    SOMECOLL           0.249      0.065      3.861      0.000
+    INC15              0.816      0.191      4.268      0.000
+    INC1525            0.540      0.209      2.581      0.010
+    INC2550            0.196      0.229      0.856      0.392
+    EMP_EMPL          -0.783      0.156     -5.029      0.000
+    EMP_UNEM          -0.202      0.100     -2.013      0.044
+    GENHLTH_          -0.985      0.087    -11.294      0.000
+    DRNKANY5          -0.504      0.068     -7.446      0.000
+    SMOKE100          -0.053      0.064     -0.830      0.406
+
+ AGE55_64 WITH
+    SEX                0.005      0.005      1.017      0.309
+
+ AGE65_BI WITH
+    SEX                0.003      0.003      1.012      0.311
+    AGE55_64          -0.122      0.006    -20.197      0.000
+
+ RACEG21_ WITH
+    SEX               -0.006      0.004     -1.558      0.119
+    AGE55_64           0.008      0.003      2.950      0.003
+    AGE65_BI          -0.028      0.003     -9.877      0.000
+
+ NOHS     WITH
+    SEX                0.002      0.004      0.418      0.676
+    AGE55_64          -0.001      0.003     -0.248      0.804
+    AGE65_BI          -0.003      0.004     -0.771      0.440
+    RACEG21_           0.047      0.006      7.648      0.000
+
+ HSGRAD   WITH
+    SEX               -0.002      0.003     -0.506      0.613
+    AGE55_64           0.002      0.003      0.766      0.444
+    AGE65_BI          -0.002      0.004     -0.548      0.583
+    RACEG21_          -0.008      0.002     -4.097      0.000
+    NOHS              -0.066      0.004    -16.694      0.000
+
+ SOMECOLL WITH
+    SEX               -0.003      0.004     -0.587      0.557
+    AGE55_64           0.004      0.003      1.185      0.236
+    AGE65_BI          -0.004      0.003     -1.310      0.190
+    RACEG21_          -0.021      0.006     -3.886      0.000
+    NOHS              -0.068      0.002    -29.542      0.000
+    HSGRAD            -0.088      0.002    -37.256      0.000
+
+ INC15    WITH
+    SEX               -0.011      0.004     -2.762      0.006
+    AGE55_64           0.007      0.003      2.764      0.006
+    AGE65_BI          -0.023      0.002    -10.053      0.000
+    RACEG21_           0.034      0.004      7.873      0.000
+    NOHS               0.046      0.004     11.164      0.000
+    HSGRAD             0.005      0.003      1.765      0.078
+    SOMECOLL          -0.025      0.004     -6.492      0.000
+
+ INC1525  WITH
+    SEX               -0.007      0.002     -3.018      0.003
+    AGE55_64           0.003      0.002      2.085      0.037
+    AGE65_BI           0.001      0.002      0.454      0.650
+    RACEG21_           0.011      0.002      5.387      0.000
+    NOHS               0.014      0.004      3.701      0.000
+    HSGRAD             0.014      0.003      4.518      0.000
+    SOMECOLL          -0.006      0.002     -2.348      0.019
+    INC15             -0.050      0.003    -17.665      0.000
+
+ INC2550  WITH
+    SEX                0.008      0.003      2.585      0.010
+    AGE55_64          -0.010      0.003     -3.599      0.000
+    AGE65_BI           0.032      0.003      9.439      0.000
+    RACEG21_          -0.008      0.004     -2.009      0.045
+    NOHS              -0.010      0.004     -2.560      0.010
+    HSGRAD             0.007      0.003      2.264      0.024
+    SOMECOLL           0.010      0.002      4.670      0.000
+    INC15             -0.055      0.002    -32.569      0.000
+    INC1525           -0.058      0.003    -20.348      0.000
+
+ EMP_EMPL WITH
+    SEX                0.015      0.003      4.326      0.000
+    AGE55_64           0.033      0.004      7.393      0.000
+    AGE65_BI          -0.105      0.004    -23.952      0.000
+    RACEG21_           0.004      0.003      1.311      0.190
+    NOHS              -0.013      0.006     -2.053      0.040
+    HSGRAD            -0.008      0.003     -2.683      0.007
+    SOMECOLL           0.009      0.005      1.769      0.077
+    INC15             -0.028      0.003     -8.349      0.000
+    INC1525           -0.017      0.003     -5.042      0.000
+    INC2550           -0.006      0.002     -2.807      0.005
+
+ EMP_UNEM WITH
+    SEX               -0.031      0.005     -6.883      0.000
+    AGE55_64           0.008      0.003      2.528      0.011
+    AGE65_BI          -0.041      0.004    -10.690      0.000
+    RACEG21_           0.020      0.005      4.022      0.000
+    NOHS               0.024      0.004      6.337      0.000
+    HSGRAD             0.006      0.003      2.379      0.017
+    SOMECOLL          -0.013      0.003     -5.322      0.000
+    INC15              0.053      0.005      9.960      0.000
+    INC1525            0.003      0.003      1.003      0.316
+    INC2550           -0.022      0.004     -5.186      0.000
+    EMP_EMPL          -0.060      0.005    -12.262      0.000
+
+ GENHLTH_ WITH
+    SEX                0.000      0.003      0.040      0.968
+    AGE55_64          -0.018      0.003     -6.954      0.000
+    AGE65_BI           0.019      0.003      6.150      0.000
+    RACEG21_          -0.030      0.004     -7.729      0.000
+    NOHS              -0.039      0.004     -9.340      0.000
+    HSGRAD            -0.011      0.002     -4.353      0.000
+    SOMECOLL           0.013      0.005      2.461      0.014
+    INC15             -0.052      0.003    -16.304      0.000
+    INC1525           -0.025      0.003     -8.048      0.000
+    INC2550            0.012      0.003      4.437      0.000
+    EMP_EMPL           0.028      0.004      6.879      0.000
+    EMP_UNEM          -0.026      0.003     -7.965      0.000
+
+ DRNKANY5 WITH
+    SEX                0.034      0.003     10.351      0.000
+    AGE55_64          -0.005      0.005     -1.088      0.277
+    AGE65_BI          -0.012      0.003     -4.104      0.000
+    RACEG21_          -0.021      0.005     -4.456      0.000
+    NOHS              -0.031      0.004     -8.119      0.000
+    HSGRAD            -0.017      0.002     -7.185      0.000
+    SOMECOLL           0.017      0.004      4.707      0.000
+    INC15             -0.030      0.002    -14.677      0.000
+    INC1525           -0.024      0.002    -14.397      0.000
+    INC2550            0.004      0.002      1.632      0.103
+    EMP_EMPL           0.033      0.005      6.318      0.000
+    EMP_UNEM          -0.023      0.004     -6.126      0.000
+    GENHLTH_           0.050      0.006      9.061      0.000
+
+ SMOKE100 WITH
+    SEX                0.033      0.004      9.263      0.000
+    AGE55_64           0.014      0.002      6.935      0.000
+    AGE65_BI          -0.014      0.003     -4.709      0.000
+    RACEG21_          -0.018      0.002     -8.322      0.000
+    NOHS               0.005      0.004      1.307      0.191
+    HSGRAD             0.014      0.003      5.294      0.000
+    SOMECOLL           0.006      0.003      2.405      0.016
+    INC15              0.014      0.003      5.126      0.000
+    INC1525            0.005      0.003      1.457      0.145
+    INC2550           -0.001      0.003     -0.229      0.819
+    EMP_EMPL          -0.001      0.003     -0.189      0.850
+    EMP_UNEM           0.002      0.004      0.425      0.671
+    GENHLTH_          -0.019      0.002     -8.096      0.000
+    DRNKANY5           0.017      0.003      6.347      0.000
+
+ Means
+    SEX                0.472      0.012     38.682      0.000
+    AGE55_64           0.313      0.010     32.212      0.000
+    AGE65_BI           0.390      0.025     15.382      0.000
+    RACEG21_           0.308      0.011     27.615      0.000
+    NOHS               0.227      0.009     24.454      0.000
+    HSGRAD             0.292      0.011     25.472      0.000
+    SOMECOLL           0.301      0.010     30.147      0.000
+    INC15              0.221      0.011     20.813      0.000
+    INC1525            0.233      0.007     31.715      0.000
+    INC2550            0.251      0.009     28.888      0.000
+    EMP_EMPL           0.357      0.018     19.416      0.000
+    EMP_UNEM           0.213      0.010     21.948      0.000
+    GENHLTH_           0.481      0.009     54.889      0.000
+    DRNKANY5           0.400      0.009     43.876      0.000
+    SMOKE100           0.586      0.011     51.012      0.000
+
+ Thresholds
+    C$1               -0.104      0.254     -0.411      0.681
+
+ Variances
+    SEX                0.249      0.001    366.032      0.000
+    AGE55_64           0.215      0.004     59.231      0.000
+    AGE65_BI           0.238      0.006     42.565      0.000
+    RACEG21_           0.213      0.004     49.412      0.000
+    NOHS               0.175      0.005     34.426      0.000
+    HSGRAD             0.207      0.005     43.377      0.000
+    SOMECOLL           0.210      0.004     52.630      0.000
+    INC15              0.170      0.006     27.439      0.000
+    INC1525            0.177      0.004     46.850      0.000
+    INC2550            0.188      0.004     45.175      0.000
+    EMP_EMPL           0.218      0.005     41.341      0.000
+    EMP_UNEM           0.144      0.005     27.729      0.000
+    GENHLTH_           0.250      0.000    757.767      0.000
+    DRNKANY5           0.240      0.002    130.403      0.000
+    SMOKE100           0.243      0.002    121.373      0.000
+
+
+LOGISTIC REGRESSION ODDS RATIO RESULTS
+
+                                         (Est. - 1) Two-Tailed
+                    Estimate       S.E.     / S.E.    P-Value
+
+ C          ON
+    SEX                0.803      0.090     -2.190      0.029
+    AGE55_64           0.768      0.119     -1.957      0.050
+    AGE65_BI           0.423      0.053    -10.789      0.000
+    RACEG21_           1.478      0.088      5.440      0.000
+    NOHS               1.514      0.131      3.928      0.000
+    HSGRAD             1.185      0.090      2.069      0.039
+    SOMECOLL           1.283      0.083      3.417      0.001
+    INC15              2.261      0.432      2.918      0.004
+    INC1525            1.716      0.359      1.994      0.046
+    INC2550            1.216      0.278      0.777      0.437
+    EMP_EMPL           0.457      0.071     -7.632      0.000
+    EMP_UNEM           0.817      0.082     -2.231      0.026
+    GENHLTH_           0.373      0.033    -19.242      0.000
+    DRNKANY5           0.604      0.041     -9.680      0.000
+    SMOKE100           0.948      0.061     -0.853      0.394
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.586E-05
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL 10 OUTPUT
+
+
+     TECH10 OUTPUT FOR CATEGORICAL VARIABLES IS NOT AVAILABLE FOR MODELS WITH COVARIATES.
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\users\tuk04132\onedrive - temple university\documents\lca brfss\multinomiallogisticregression_c2_test_040622.dgm
+
+     Beginning Time:  22:05:34
+        Ending Time:  23:35:42
+       Elapsed Time:  01:30:08
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2018 Muthen & Muthen
